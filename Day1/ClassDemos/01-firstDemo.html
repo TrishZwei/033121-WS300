@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<title>When Scripts Run</title>
+		<style type="text/css">
+			.js{
+				font-family: Verdana, Arial, Sans;
+				background-color: #add;
+			}	
+
+		</style>
+		<script type="text/javascript">
+			console.log('scripts run from top to bottom.')
+			alert("I'm in the head"); //note the differences in the quotes.
+			console.log('This does not print to the console until after the first alert resolves.')
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			alert('I\'m in the body.') //notice the backslash.
+			//this also should block the divs below from rendering the first time the page is accessed. Regular refreshing the page will not act the same. Must be a hard refresh.
+
+			//the code below will give off an error: why?
+			//let myDivs = document.querySelectorAll('div'); 
+			
+			let myDivs
+
+			function testingCode(){
+				//reassigning the value of myDivs when function is run
+				myDivs = document.querySelectorAll('div');
+			}
+
+
+			//querySelector selects the divs on the page in the same manner as CSS selects for styling and in fact uses the same API as CSS. Any valid CSS selector can go into that argument.
+
+		</script>
+		<div>Div 1 yeah!</div>
+		<div>Div 2</div>
+		<script type="text/javascript">
+			testingCode(); //calling function to run
+			//the elements on the page are now available and can be accessed by JS.
+			console.log(myDivs)
+			alert(myDivs[0].textContent);
+		</script>
+		<!-- when should external JS be loaded? -->
+		<script type="text/javascript" src="scripts/script.js"></script>
+	</body>
+</html>

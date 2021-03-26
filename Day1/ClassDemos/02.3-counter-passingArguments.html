@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Counter/Passing Arguments</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px; 
+			}	
+	</style>		
+</head>
+<body>
+<!-- make sure you update font size -->
+	<div id="counter-div">0</div>
+	<input type="button" class="my-btn" id="my-button" value="+1">
+	<script type="text/javascript">
+		'use strict'; //explain use strict
+
+		const myBtn = document.querySelector('#my-button')
+		const counterDiv = document.querySelector('#counter-div');
+		let count = 0; //we use let because we are going to redeclare the value of counter in the function.
+
+		myBtn.addEventListener('click', () => {
+		
+			count ++;  //shorthand for adding 1.
+
+		if(count < 5){
+			//do stuff if the count is less than 5
+			counterDiv.style.color = 'blue';
+		}else{
+			counterDiv.style.color = 'red';
+		}
+
+		if(count == 7){
+			counterDiv.style.color = 'purple';
+		}
+
+		if(count > 15){
+			counterDiv.style.fontSize = count+'px';
+
+		}
+
+		if(isOdd(count)){
+			//if the counter is an odd number this code will render true
+			//the long way to write this is isOdd(count) == true
+			counterDiv.style.backgroundColor = 'cornflowerblue';
+		}else{
+			//if the count is not an odd number this code will be executed because condition is false.
+			counterDiv.style.backgroundColor = '#ccc';
+		}
+
+		document.querySelector('#counter-div').textContent = count;
+
+
+		})
+
+
+//This is an example of a doc (short for documentation) block:
+
+/******
+* returns true or false depending on if the number is odd
+* @param num: number
+******/
+
+//demo isOdd through the console
+//talk about the default value
+
+		function isOdd(num = 0){
+
+			if(num%2 == 1){
+				//the modulo/modulus operator is more easily remembered as the remainder operator.
+				//it takes the first value divides the second value and returns the remainder.
+				//1%2 has a value of 1. 2 goes into 1 zero times and has 1 left over
+				return true;
+			}else{
+				//2%2 has a value of 0. 2 goes into 2 one time and has 0 left over
+				return false;
+			}
+
+		}
+
+	</script>
+</body>
+</html>

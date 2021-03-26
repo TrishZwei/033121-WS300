@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Counter</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			}	
+	</style>		
+</head>
+<body>
+<!-- demo how counter is known by JS and can be called in the window by its id as if it was a variable the id should be named differently in order to keep the element safe from bad JS. -->
+	<div id="counter-div">0</div>
+
+	<!-- ask about the value attribute
+		demo the wrong way. Tell them that this will not be acceptable in final projects 
+		<input type="button" id="my-button" value="+1" onclick="Add2Counter()">
+	-->
+	<input type="button" class="my-btn" id="my-button" value="+1">
+	<script type="text/javascript">
+		'use strict'; //explain use strict
+		//go through the ways to select the element
+		/* Primary JS web development pattern
+		1. select the element
+		2. listen for an event
+		3. make something happen when the event is heard
+		----------------
+		In this case we are selecting an element: the button
+		attaching an event listener (which says when this event happens on this element run this function)
+		and running a function that does something when the event occurs. 
+		In this example: my Add2Counter function
+
+		*/
+
+		//why const? the button is never going to change. We will never have to redelare it.
+
+		//const myBtn = document.getElementById('my-button')
+		//const myBtn = document.getElementsByClassName('my-btn')[0];
+		//const myBtn = document.querySelector('.my-btn');
+		//const myBtn = document.querySelectorAll('.my-btn')[0];		
+		const myBtn = document.querySelector('#my-button')
+		console.log(myBtn)
+		let count = 0; //we use let because we are going to redeclare the value of counter in the function.
+
+		//var can be used also, but let is the best and most modern practice. 
+
+		function Add2Counter(){
+		//this is a declaritive function. It has a name and is stored in memory like a variable. There is no parameter in this function since it needs no outside information to run. The function does not run until it is called and it is called when the button is clicked.	
+		//all the ways to add 1:
+		//count = count+1;
+		//count += 1;
+		
+		count ++;  //shorthand for adding 1.
+
+		//select element and have its textContent property change to reflect the current value of the counter
+		document.querySelector('#counter-div').textContent = count;
+
+		}
+
+		//not a bad practice, but not a best practice
+		//myBtn.onclick = Add2Counter;
+		//no paranthesis on the function call because we want it to wait to run. Add2Counter() would run immediately upon being read by the interpreter and break the button from being able to perform the action again.
+
+		myBtn.addEventListener('click', Add2Counter); //best practice because of high level of control over event listener
+
+		// arrow function: most modern anon function format		
+		//myBtn.addEventListener('click', () => {count++; document.querySelector('#counter').textContent = count;})
+
+
+
+	</script>
+</body>
+</html>
