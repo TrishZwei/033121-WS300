@@ -1,0 +1,1 @@
+These files are updated using let and const instead of var in comparison to some of the slides in the video lecture. The keyword var still exists in some examples in order to demonstrate scope. 
