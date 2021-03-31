@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Output, Selection, Concatenation and Interpolation</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			background-color: black;
+			color: white;
+			}	
+	</style>		
+</head>
+<body>
+	<!-- ids are accessible to the window object as variables. Hyphenate your ids to avoid this. -->
+	<div id="message-div">Message Goes Here.</div>
+	<div id="date-div" class="child-nodes">
+		<p>Today is:<br>
+			<span>	
+			<script type="text/javascript">
+				//document.write is considered a bad practice. Fix this whenever and wherever you can. (see line: ?? for alternative.)
+				document.write(Date());	
+				//document.write(Math.PI);	
+			</script>
+			</span>
+		</p>
+	</div>
+<script type="text/javascript">
+	/* ways to select element(s):
+	document.getElementById() 
+	gets first id or last?
+
+	document.getElementsByTagName()
+	gets all tags within the document. This can be further refined.
+
+	document.getElementsByClassName()
+	Finding elements by class name does not work in Internet Explorer 8 and earlier versions.
+	
+	document.querySelector() gets first item that meets requirement
+
+	document.querySelectorAll()gets all items that meet requirement (even if only one item is found, individual item must be accessed with [] notation)
+
+	*/
+	document.getElementById('message-div').textContent = "some string"; //changes the content of the div with the id.
+
+	let myDivs = document.getElementsByTagName('div')
+	//the alerts are kicking off faster than the HTML can render.
+
+	alert(myDivs) //this is an html collection. It is a live connection. So if we add a new div in the DOM it will be recognized and added to this list. https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection
+
+	console.log(myDivs, 'first time')
+
+	let childNodes = document.getElementsByClassName('child-nodes')
+	console.log(childNodes, 'first time')
+
+	//this sequence allows us to add a paragraph to the div with the id of 'date-div'
+	let node = document.createElement('p');
+	//let textNode = document.createTextNode('<span>This is inserted text</span>');
+	//please note that this is only text and NOT HTML.
+	let textNode = document.createTextNode('This is inserted text');
+	//if we wanted to add a span tag we'd have to do the same process in the paragraph tag we are doing in the div.
+	node.appendChild(textNode);
+	document.querySelector('#date-div').appendChild(node);
+	node.innerHTML = '<span>This now has span tags</span>'; //innerHTML is considered dangerous and a bad practice. But it is useful and like in write(), if YOU control the data, you can still do it. Just be aware.
+
+	myDivs2 = document.querySelectorAll('div');//Modern CSS API/DOM method for multiple elements 
+	alert(myDivs2) //this is a node list and is static. (will not update list) https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+
+	let newDiv = document.createElement('div')
+	let newDivText = document.createTextNode('this is a new div');
+	newDiv.setAttribute('id', 'new-div')
+	newDiv.appendChild(newDivText)
+	newDiv.classList = 'child-nodes';
+	document.body.appendChild(newDiv)
+
+	console.log(myDivs, 'updated') //html collection
+	console.log(myDivs2, 'not updated') //html node list is static. only way to update the variable is to reset it.
+	console.log(childNodes, 'updated') //html collection
+
+/*concatenation and interpolation:
+JS does not distinguish between "" and '' but `` is different.
+*/
+
+//This example replaces the write method and demonstrates concatenation:
+document.querySelector('#date-div p span').textContent = Date() + " Hey inspect the HTML output for this element in the browser. Where did our original script tag go?";
+
+
+//window is an object.
+//onresize is an event listener that listens for when the window is resized (make the browser window bigger/smaller)
+//this is an anonymous function as it has no name. The event listener is what calls it to run.
+
+
+//JS does not differentiate between "" and '' but `` is different.
+	window.onresize = function(){
+		let winWidth = window.innerWidth;
+		let winHeight = window.innerHeight;
+		console.log('width:'+winWidth); //adding strings together is called concatenation
+		console.log('height:', winHeight); //example of passing multiple arguments to console.log()
+
+		//example of interpolation which also allows for strings that take up multilines. concatenation does not allow for multiline.
+
+		//even though there is only one element in this node list, it still must be accessed with [] notation. querySelectorAll expects a number of items to be selected, even if there is only one or even none.
+		document.querySelectorAll('div#new-div')[0].textContent = 
+		`Width: ${winWidth} 
+		Height: ${winHeight}`; 
+
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Counter/Element Properties</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px; 
+			/* setting the size here specifically as the user could change the size in the browser default*/
+			}	
+	</style>		
+</head>
+<body>
+<!-- make sure you update font size -->
+	<div id="counter-div">0</div>
+	<input type="button" class="my-btn" id="my-button" value="+1">
+	<script type="text/javascript">
+		'use strict'; //explain use strict
+
+		//go through the ways to select the element
+		/* Primary JS web development pattern
+
+		*/
+
+		//why const? the button is never going to change. We will never have to redelare it.
+
+		//const myBtn = document.getElementById('my-button')
+		//const myBtn = document.getElementsByClassName('my-btn')[0];
+		//const myBtn = document.querySelector('.my-btn');
+		//const myBtn = document.querySelectorAll('.my-btn')[0];		
+		const myBtn = document.querySelector('#my-button')
+		//add this in later:
+		const counterDiv = document.querySelector('#counter-div');
+		
+		let count = 0; //we use let because we are going to redeclare the value of counter in the function.
+
+		//var can be used also, but let is the best and most modern practice. 
+
+
+		const Add2Counter = function(){
+		//this is an expressive function. The function is the value of a variable. The function is not stored in memory and is run and immediately forgotten as soon as the function is complete. There is no parameter in this function since it needs no outside information to run. The function does not run until it is called and it is called when the button is clicked.
+
+		count ++;  //shorthand for adding 1.
+
+		//ask why is the text is black until the button is clicked?
+
+		if(count < 5){
+			//do stuff if the count is less than 5
+			counterDiv.style.color = 'blue';
+		}else{
+			counterDiv.style.color = 'red';
+		}
+
+		if(count == 7){
+			counterDiv.style.color = 'purple';
+		}
+
+		if(count > 15){
+			counterDiv.style.fontSize = count+'px';
+
+		}
+
+		document.querySelector('#counter-div').textContent = count;
+
+		}
+
+		myBtn.addEventListener('click', Add2Counter); 
+
+		// arrow function: most modern anon function format		
+		//myBtn.addEventListener('click', () => {count++; document.querySelector('#counter-div').textContent = count;})
+
+	</script>
+</body>
+</html>
