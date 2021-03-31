@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Counter</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+		}
+	</style>
+</head>
+<body>
+<div id="counter-div">0</div>
+<!-- wrong way: <input type="button" id="my-btn" value="+1" onclick="Add2Counter()"> -->
+<input type="button" id="my-btn" value="+1">
+
+
+<!-- google says JS best practice is just before the closing body tag -->
+<script type="text/javascript">
+	'use strict'; //ensures ES6, forces keywords for variables
+	const myBtn = document.querySelector('#my-btn');
+	console.log(myBtn)
+	const counterDiv = document.querySelector('#counter-div');
+	let count = 0;
+	
+
+
+	function Add2Counter(){
+		count = count+1; //long hand
+		//window object
+		//counter.textContent = count;
+		counterDiv.textContent = count;
+	}//end Add2Counter
+
+</script>
+</body>
+</html>

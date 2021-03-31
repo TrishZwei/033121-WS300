@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>When Scripts Run</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}	
+		.js{
+			background-color: #add;
+		}
+	</style>
+	<script>
+		alert("I'm in the head");
+	</script>
+</head>
+<body>
+<script type="text/javascript">
+	alert('I\'m in the body.'); //the backslash is an escape character
+	//variable keywords: *var, let, const
+	//*es5
+
+	let myDivs //empty variable
+
+	function testingCode(){
+		myDivs = document.querySelectorAll('div')
+		console.log(myDivs)
+	}
+	
+</script>
+<div>Div 1 yeah!</div>
+<div>Div 2</div>
+<script type="text/javascript">
+	alert('new alert');
+	testingCode(); //calling the function to run
+	alert(myDivs[0].textContent);
+</script>
+<script type="text/javascript" src="scripts/script.js"></script>
+</body>
+</html>
