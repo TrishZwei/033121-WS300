@@ -1,0 +1,1 @@
+This folder will cover things I wanted to cover in class. Sometimes we will get to all of them and sometimes we won't. You should look at items completed in class folder to see what we have done during this session.

@@ -1,0 +1,1 @@
+This folder will cover what we did in class. The ClassDemos folder covers things I wanted to cover in class. Sometimes we will get to all of them and sometimes we won't. You should look at items the other folder as well for your own learning.
