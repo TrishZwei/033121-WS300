@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Parenthis</title>
+</head>
+<body>
+	<input type="text" id="my-name" class="name-box">
+<!-- 	<input type="text" class="name-box"> -->
+<button>Get my Name</button>
+<div id="message-div">message will go here.</div>
+
+<script type="text/javascript">
+	'use strict'
+
+//ways to select elements:
+/*
+let inputBox = document.getElementsByTagName('input')[0]
+console.log(inputBox);
+inputBox = document.getElementsByClassName('name-box')
+//inputBox = document.getElementById('message-div')
+//alert(inputBox);
+inputBox = document.querySelectorAll('input')
+inputBox = document.querySelector('input') //only gets first one
+*/
+
+let inputBox = document.querySelector('#my-name')
+
+//conditional example
+let myName = 'Trish'
+myName = 'Joe'	
+
+
+	if(myName == 'Trish'){
+		alert('My name is '+myName)
+
+	}else{
+		alert('My name is not Trish')
+	}
+
+console.log(myName);
+
+
+function getName(){
+	if (inputBox.value != '') {
+		myName = inputBox.value 
+		alert('My name is ' + myName)
+		displayName(myName) //myName is the argument
+	}else{
+		//no value from input box
+		alert('you need to fill out your name');
+	}
+
+}
+
+//argument/parameter
+//@param name:string  
+function displayName(name){
+	//parameters always are local variables
+	document.querySelector('#message-div').textContent =name
+}
+
+
+//attach event listeners
+
+document.querySelector('button').onclick = getName; //no parenthesis... we are waiting on the click and not running it immediately.
+
+getName() // this would run right away.
+
+//hoisting demo
+console.log(newName)
+//console.log(otherName) // this creates an error
+
+var newName = 'Blah.'
+let otherName = 'stuff'
+
+console.log(otherName) //we can use it here.
+console.log(newName)
+
+var newName = 'Blah2'
+console.log(newName)
+
+//let otherName = 'stuff 2'// error.
+//console.log(otherName) 
+
+
+</script>
+</body>
+</html>

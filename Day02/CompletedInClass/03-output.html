@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Output, Selection, Concatenation and Interpolation</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			background-color: black;
+			color: white;
+			}	
+	</style>
+</head>
+<body>
+	<div id="message-div">Message goes here</div>
+	<div id="date-div" class="child-nodes">
+		<p>Today is:
+			<span>
+				<script type="text/javascript">
+					//very old and considered a bad practice.
+					document.write(Date());
+					//document.write(Math.PI);
+				</script>
+			</span>		
+		</p>
+	</div>
+	<div class="inner-html">This text is going to be replaced by innerHTML</div>
+
+<script type="text/javascript">
+	const messageDiv = document.querySelector('#message-div')
+
+	messageDiv.textContent = "some string";
+	//this sequence allows us to add a paragraph to our div with the id of date-div
+
+	let node = document.createElement('p');
+
+	let textNode = document.createTextNode('This is inserted text')
+
+	node.appendChild(textNode);
+
+	let dateDiv = document.querySelector('#date-div')
+	
+	dateDiv.appendChild(node);
+
+	let updateDiv = document.querySelectorAll('.inner-html')[0]; //since this is a nodeList, you must access individuals in this group with the bracket syntax even if there is only one.
+	updateDiv.innerHTML = '<span> This is some new text </span>'
+
+	//document.querySelector('#date-div p span')
+	dateDiv.querySelector('p span').textContent = Date()+ " Hey inspect the HTML Output for this elemement in the browser... where did the script tag go?"
+
+	//JS does not differentiate between '' and "" but `` is different
+
+	window.onresize = function(){
+		//console.log('resize')
+
+		let winWidth = window.innerWidth;
+		let winHeight = window.innerHeight;
+		console.log('width: ' + winWidth) //example of concatenation
+		console.log('height: ', winHeight )//example of multiple args to console.
+
+	//interpolation as of ES6
+	document.querySelectorAll('div')[2].textContent = 
+	`Width: ${winWidth}
+	Height: ${winHeight}`;
+
+	//reminder that lists start at 0
+	//console.log(document.querySelectorAll('div')[2])
+
+	}
+</script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Counter</title>
+	<title>Counter Element Properties</title>
 	<style type="text/css">
 		body{
 			font-family: Verdana, Arial, Sans;
@@ -23,14 +23,25 @@
 	let count = 0;
 
 	function Add2Counter(){
-		//count = count+1; //long hand
-		//count += 1 //shorter
-		//subtraction: count -=
-		//just for adding one:
 		count++; 
-		//count-- to subtract
-		//window object
-		//counter.textContent = count;
+
+
+		if(count < 5){
+			counterDiv.style.color = 'blue';
+		}else{
+			counterDiv.style.color = 'red';
+		}
+
+		//this overwrites the above code at count == 7
+		if(count == 7){
+			counterDiv.style.color = 'purple';
+		}
+
+		if(count > 15){
+			counterDiv.style.fontSize = count+'px';
+		}
+
+
 		counterDiv.textContent = count;
 	}//end Add2Counter
 
