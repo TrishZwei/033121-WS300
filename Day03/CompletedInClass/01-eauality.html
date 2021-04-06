@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Equality Example</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="message">Message Goes Here</div>
+
+	<script type="text/javascript">
+		'use strict';
+		const messageDiv = document.querySelector('.message'); //querySelector only gets first item 
+		//equality! =, ==, ===
+
+		let exp1 = 1, // = assigns a value
+		    exp2 = (exp1 == '1'), //returns true because 
+		    exp3 = (exp1 === '1'); //returns false
+
+		const message = "exp1 gets its value from the assignment operator (=) and has the value of "+exp1+". exp2 compares exp1's value to a character 1 and the comparison is seen as "+exp2+". exp3 compares its value AND type to exp1 and is "+exp3+". Why?";
+
+		messageDiv.textContent = message; 
+
+		console.log(typeof exp1) //number   
+		console.log(typeof '1')  //string
+		console.log(exp1 == 1) //true
+		console.log(exp1 == '1') // also true
+		console.log(exp1 === '1') // false
+		console.log(exp1 === 1) // true
+		let exp4;
+
+		if(exp2 = 2){ //accidental assignment always comes back as true
+			exp4 = true
+		}else{
+			exp4 = false
+		}
+		console.log(exp4) //comes back as true
+
+		if(exp2 == 1){
+			exp4 = true
+		}else{
+			exp4 = false
+		}
+
+
+		console.log(exp4) //false
+
+
+
+
+
+
+	</script>
+</body>
+</html>

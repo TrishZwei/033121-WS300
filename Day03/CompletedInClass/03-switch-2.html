@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Conditionals Example</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="hour">0</div>
+
+	<script type="text/javascript">
+		'use strict';
+
+		let thisTime = new Date(); //this instantiates a new date object
+		//data types: String, Number, Boolean, Array, Object (typeof will tell you one of these types)
+		console.log(thisTime) //full date
+
+		const displayDiv = document.querySelector('.hour'); 
+
+		let message; //default message
+		
+		//thisTime.setFullYear(2020) //must be above getting the year if we want to test for leap year
+		
+		const year = thisTime.getFullYear(); //gets 4 digit year. .getYear() is depricated
+
+		//this is an array of month names: index names 0 - 11
+		const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		//thisTime.setMonth(1);
+		console.log(monthNames[thisTime.getMonth()])
+
+		const month = thisTime.getMonth()+1;
+
+		let dayCount;
+
+		//this will tell us the number of days in a given month.
+		switch(month){
+			case 1:
+			case 3:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				dayCount = 31
+				break;
+
+			case 2:
+				if(((year % 4 == 0) && !(year % 100 == 0)) || (year % 400 == 0)){ 
+				    //is this a leap year? If so....
+ 					dayCount = 29; 
+				}else{
+					dayCount = 28;
+				}
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				dayCount = 30
+				break;
+			default:
+				dayCount = 0; //invalid month
+		}
+
+		console.log(dayCount);
+
+		//message = "The number of days in "+monthNames[month-1]+" are: "+dayCount+ "." ; //concatenation
+		message = `The number of days in ${monthNames[month-1]} are: ${dayCount}.` ; //interpolation
+
+
+		displayDiv.textContent = message;
+
+	</script>
+</body>
+</html>

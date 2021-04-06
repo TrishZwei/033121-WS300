@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Conditionals Example</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="hour">0</div>
+
+	<script type="text/javascript">
+		'use strict';
+
+		let thisTime = new Date(); //this instantiates a new date object
+		//data types: String, Number, Boolean, Array, Object (typeof will tell you one of these types)
+
+		//to test use .setHours(0 to 23);
+		//thisTime.setHours(23)
+
+		thisTime = thisTime.getHours(); //returns the current hour and stores it in the same variable.
+
+		console.log(thisTime)
+
+		const displayDiv = document.querySelector('.hour'); 
+
+		let message; //creating space for a value to be stored later
+
+		if(thisTime > 0){
+			//what hour is this going to catch? All except for midnight
+			console.log('yes. Hours are greater than 0')
+		}
+
+		if(thisTime < 12){
+			//before noon
+			message = 'Good Morning';
+		}else if(thisTime < 18 ){
+			//between noon and 6
+			message = 'Good Afternoon';
+		}else if(thisTime < 23){
+			//between 6pm and 11pm
+			message = 'Good Evening';
+		}else{
+			//everything else
+			message = 'Good Night'
+		}
+
+		displayDiv.textContent = message;
+
+	</script>
+</body>
+</html>

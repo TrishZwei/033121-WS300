@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Example of a String Object</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+		}
+	</style>
+</head>
+<body>
+Look in the console for results:
+
+<script>
+	let myString = 'Hey!'
+	console.log(typeof myString)
+	console.log(myString.constructor)
+
+	let myString2 = new String(myString)
+	console.log(typeof myString2)
+	console.log(myString2.constructor)
+	//constructor defines what kind of a class or what rules can be applied. Even primitive data is treated like an object without being an object.
+
+
+	console.log(myString == myString2) //returns true (value is same)
+	console.log(myString === myString2) //returns false (type is not the same)
+
+</script>
+</body>
+</html>
