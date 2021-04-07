@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Click Game</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+		}
+
+		.stage{
+			width: 400px;
+			height: 400px;
+			position: relative;
+			border: 1px solid black;
+		}
+
+		.box{
+			width: 40px;
+			height: 40px;
+			border: 1px solid black;
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			background-color: rebeccapurple;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="ui">
+		Score: <span class="score">0</span> | Time Remaining: <span class="time">10</span> seconds
+	</div>
+	<div class="stage">
+		<div class="box"></div>
+
+	</div>
+	<script type="text/javascript">
+		/* things needed
+			//need an event listener for click on box
+			//need a function named clickBox
+				// adds 1 to our score
+					//need variable to store scores
+					//need to update visual display of score
+				//change box position
+				//change box height, width
+				//change box color
+			//need to store box in a variable so multiple items can access it
+			//timer and seconds to countdown
+			//need variable to store number of seconds and to compare against
+		*/
+
+		var myBox = document.querySelector('.box');
+		var score = 0;
+		var seconds = 10;
+		var timer; //timer is undefined it has no value.
+		var gameRunning = false;
+
+		// setTimeout(function(){
+		// 	alert('I run only once.');
+		// }, 3000);
+		// setInterval(function(){
+		// 	alert('I run every 5000ms unless you change the value of my second argument')
+		// }, 5000);
+
+
+
+		function setTime(){
+			//subtract 1 from the value of seconds
+			seconds--;
+			//console.log(seconds);
+			//update display for user
+
+			if(seconds > 0){
+			//1 method to select element: 
+			document.querySelector('.time').textContent = seconds;
+
+			}else{
+				document.querySelector('.time').textContent = 0;
+				clearInterval(timer);
+				alert('game over');
+			}
+
+			//2 method to select element: console.log(document.getElementsByClassName('time')[0]);
+			//3 method to select element: console.log(document.getElementsByTagName('span')[1]);
+			//traversing DOM (not a method) console.log(document.body.children[0].children[1]);
+
+
+		}	
+
+
+
+		function getRandomInt( min = 1, max = 100){
+			//Math.floor rounds down, Math.random generates a decimal value from 0 - almost 1
+			return Math.floor(Math.random() * (max - min +1) ) + min;
+		}
+
+		function clickBox(){
+			//alert('click');//alert is a method of the window object - window is default which is why you don;t have to do this: window.alert('click') 
+			
+			//alternate ways to write comparison
+			//(!gameRunning)
+			//if what's inside  the parenthis is true then do the code. We are checking to see if the value of gameRunning is false
+			if(gameRunning == false){
+			timer = setInterval(setTime, 1000);
+			gameRunning = true;				
+			}
+
+			score++; 
+			//alert(score);
+			document.querySelector('.score').textContent = score;
+			//select an element, access its property, set its value to score's current value
+
+			//changing height and width
+			var newHeight = getRandomInt(10, 60)
+			var newWidth = getRandomInt(10, 60)
+
+			//changing top and left position
+			var newTop = getRandomInt(0,400-newHeight);
+			var newLeft = getRandomInt(0,400-newWidth);
+			//rbg background color
+			var r = getRandomInt(0,255);
+			var g = getRandomInt(0,255);
+			var b = getRandomInt(0,255);
+
+			//apply styling:
+			myBox.style.top = newTop+'px';
+			myBox.style.left = newLeft+'px';
+			myBox.style.height = newHeight+'px';
+			myBox.style.width = newWidth+'px';
+			myBox.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+
+
+		}
+
+
+		//click on box, call clickBox function to run
+		myBox.onclick = clickBox; //reminder that no parenthesis tells JS to wait for click on box
+
+
+
+	</script>
+</body>
+</html>

@@ -21,6 +21,7 @@
 			<option value="sub">minus</option>
 			<option value="mul">times</option>
 			<option value="div">divided by</option>
+			<option value="mod">show remainder</option>
 		</select>
 		<input type="text" id="num-two">	
 		<input type="button" id="my-btn" value="Get Total">
@@ -62,6 +63,7 @@
 				alert('Please enter a valid number');
 
 				}else{
+
 					switch(optVal){
 						case 'add':
 						totalDiv.textContent = (num1*1)+(num2*1);
@@ -79,10 +81,14 @@
 						totalDiv.textContent = (num1*1)/(num2*1);
 						break;
 
+						case 'mod':
+						totalDiv.textContent = (num1*1)%(num2*1);
+						break;
+
 						default:
 						alert('Please choose an operator');
-
 					}
+					
 				}		
 
 			}else{

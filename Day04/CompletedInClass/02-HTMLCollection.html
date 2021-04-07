@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HTML Collection</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="container">stuff goes here</div>
+	<script type="text/javascript">
+		'use strict'; //ensures use of ES6 and keywords for variables this keeps scope consistant
+
+		///////////Loops////////////
+		const messageDiv = document.querySelector('.container');
+		let message = ''; 	
+		//for loop:
+		message = 'Many Divs:';
+		let count = 0
+		for(let i = 0; i < 100; i++){
+			console.log(i)
+			count++
+			//as long  as i is less than 100, keep doing the loop
+			message += '<div id="'+count+'">'+count+'</div>';
+		}
+
+		//any variable with let or const will only be available within its block level scope
+		//console.log(i); //error since i is not in the same scope
+
+	//output to page:
+	messageDiv.innerHTML = message;
+
+
+
+	</script>
+
+</body>
+</html>

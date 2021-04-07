@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Click Game</title>
+<style type="text/css">
+	#gamestage{
+        width: 400px;
+        height: 400px;
+        border: 1px solid black;
+        position: relative;
+    }
+
+    #square{
+        width: 40px;
+        height: 40px;
+        background-color: rebeccapurple;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        border: 1px solid black;
+    }
+
+</style>
+</head>
+<body>
+    <div>Score:<span id="score">0</span> | Time remaining:<span id="timer">10</span> seconds</div>
+    <div id="gamestage">
+        <div id="square"></div> 
+    </div> 
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+var score = 0;//points
+var timer = 10; //seconds
+var gameOver; //hold timer interval
+var gameRunning = false; //is the game being currently played?
+
+    $('#square').click(function(){
+        if(!gameRunning){
+            //start timer interval
+            startTimer();
+            //set gameRunning to true
+            gameRunning = true;
+        }
+        //change the div size
+        //generate a new height
+//        var newHeight = (Math.random()*40)+10; //10 - 50
+        var newHeight = randnum(10, 50); //10 - 50
+        //generate a new width
+//        var newWidth = (Math.random()*40)+10;
+        var newWidth = randnum(10, 50);
+        
+    //move the div to a different location
+        //generate a new top
+        var newTop = randnum(0,(400-newHeight));
+        //generate a new left
+        var newLeft = randnum(0,400-newWidth);
+    //apply values to THIS square
+    
+        $(this).css({
+            top:newTop,
+            left: newLeft,
+            height:newHeight,
+            width:newWidth,
+            'background-color':genhex()
+                    });
+        //add a point to the score
+        
+        score++;
+        $('#score').html(score);
+    
+    }); //end #square click
+    
+//add a 10 second timer
+ function startTimer(){   
+        gameOver = setInterval(function(){
+        //subtract 1
+        timer--;
+        $('#timer').html(timer);
+        //subtract 1, 
+        //update timer div
+        if(timer == 0){
+            alert('Your Score is:'+score);
+            clearInterval(gameOver); //stops the timer
+            gameRunning = false;
+        }
+        //check if timer is 0
+    
+    },1000 );
+ }
+    
+    
+    
+    //this function has default values for its parameters.
+    function randnum(min = 1,max=100){
+        return Math.round(Math.random()* (max - min))+min            
+    }//end randnum
+    
+    function genhex(){
+        var hexvalues = '1234567890ABCDEF'; 
+        hexvalues = hexvalues.split(''); //split is a method used on strings to convert them to arrays. Here I am saying split this sting by '' (no character) which will individually split the hexvalues into an array of 15 single characters.   
+        var hexcolor = '#';
+        
+        for (var i=0; i<6; i++){
+            //Math.floor rounds down what ever is in its parenthesis
+            //Math.random() generates a random value from 0 to almost 1. In order to get a larger value, you have to multiply it. We don't want it to be greater than the indexes available in the hexvalues array. Since it get rounded down by the Math.floor, we can use the length of the array as its highest value. It will never be above 15.
+        var newval = hexvalues[Math.floor(Math.random()*hexvalues.length)];  //this is how it gets a random value out of the array.  
+        hexcolor += newval; //it then assigns that value and adds it to the current value of hex color. It does this as many times as the loop turns. As long as i is less than 6. 0-5 runs 6 times. This completes a hexadecimal value.
+        console.log(hexcolor);            
+        }//end for loop
+    
+        return hexcolor; //sends the value back to where it came/was called from
+    }//end genhex
+
+    
+</script>
+</body>
+</html>

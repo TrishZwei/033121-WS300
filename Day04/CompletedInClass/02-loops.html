@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Various Loops</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="container">stuff goes here</div>
+	<script type="text/javascript">
+		'use strict'; //ensures use of ES6 and keywords for variables this keeps scope consistant
+
+		var newMessage = 'My cool message';
+
+		//example of scope, global vs local
+		function updateNewMessage(){
+			// var newMessage;
+			console.log(newMessage)
+			var newMessage = 'updated message';
+			//var will act as if the variable is at the top of the function
+			//if I use let and try to access it before it is defined, JS will throw an error
+			console.log(newMessage)
+		}
+
+		console.log(newMessage)
+		updateNewMessage(); //parenthesis tells the function to run.
+
+		///////////Loops////////////
+		const messageDiv = document.querySelector('.container');
+		let message = ''; 	
+		const items = ['one', 'two', 'three', 'four', 'five'];
+		const theLength = items.length; //returns 5
+
+		// //for loop:
+		// message = 'For Loop V1:';
+		//counting up
+		// for(let i = 0; i < theLength; i++){
+		// 	//as long  as i is less than 5, keep doing the loop
+		// 	message += '<div>value: '+items[i]+', index: '+i+'</div>';
+		// }
+
+		// //for loop:
+		// message = 'For Loop V2:';
+		// //counting down
+		// for(let i = theLength-1; i >= 0; i--){
+		// 	//as long  as i is greater than or equal to 0, keep doing the loop
+		// 	message += '<div>value: '+items[i]+', index: '+i+'</div>';
+		// }
+
+		let i = 0; //while loops must have initializer outside the loop
+
+		//while loop:
+		message = 'While Loop:'
+		while(i < theLength){
+			//as long as i is less than 5....
+			message += '<div>value: '+items[i]+', index: '+i+'</div>';
+			i++; //must tell i to increase in value or it will never change and cause an infinite loop
+		}
+
+
+
+
+	//output to page:
+	messageDiv.innerHTML = message;
+
+
+
+	</script>
+
+</body>
+</html>
