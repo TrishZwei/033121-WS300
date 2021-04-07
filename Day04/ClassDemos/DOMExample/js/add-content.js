@@ -12,16 +12,16 @@ if (hourNow > 18) {
     greeting = 'Welcome!';
 }
 
-//document.write('<h3>' + greeting + '</h3>');
-var newEl = document.createElement('h3');
-newEl.appendChild(document.createTextNode(greeting));
-var ref = document.querySelector('h1');
+document.write('<h3>' + greeting + '</h3>');
+// var newEl = document.createElement('h3');
+// newEl.appendChild(document.createTextNode(greeting));
+// var ref = document.querySelector('h1');
 
-function insertAfter(el, referenceNode) {
-    referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
-}
+// function insertAfter(el, referenceNode) {
+//     referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+// }
 
 
-insertAfter(newEl, ref);
+// insertAfter(newEl, ref);
 
 

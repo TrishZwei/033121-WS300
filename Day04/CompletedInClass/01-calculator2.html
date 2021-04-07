@@ -14,7 +14,14 @@
 </head>
 <body>
 	<div class="calculator">
-		<input type="number" id="num-one"> <span> + </span>	
+		<input type="number" id="num-one">
+		<select>
+			<option value="">Please Choose</option>
+			<option value="add">plus</option>
+			<option value="sub">minus</option>
+			<option value="mul">times</option>
+			<option value="div">divided by</option>
+		</select>
 		<input type="text" id="num-two">	
 		<input type="button" id="my-btn" value="Get Total">
 		<div class="total">0</div>
@@ -27,8 +34,9 @@
 		const input1 = document.querySelector('#num-one'),
 			  input2 = document.querySelector('#num-two'),
 			  myBtn = document.querySelector('#my-btn'),
-			  totalDiv = document.querySelector('.total');
-			  //document.getElementsByClassName('total')[0]
+			  totalDiv = document.querySelector('.total'),
+			  opt = document.querySelector('select');
+			  //document.getElementsByTagName('select')[0]
 
 		function doMath(){
 			/*
@@ -40,6 +48,7 @@
 			let num1 = input1.value, 
 				num2 = input2.value //anything in a string is a truthy value 
 				//'false' is a truthy value
+			let optVal = opt.value;
 
 			//insert conditional statement here
 			//isNaN(num1) and isNaN(num2)
@@ -53,9 +62,27 @@
 				alert('Please enter a valid number');
 
 				}else{
-				//we have valid numbers!
-				//Number(num1)
-				totalDiv.textContent = (num1*1)+(num2*1);
+					switch(optVal){
+						case 'add':
+						totalDiv.textContent = (num1*1)+(num2*1);
+						break;
+
+						case 'sub':
+						totalDiv.textContent = (num1*1)-(num2*1);
+						break;
+
+						case 'mul':
+						totalDiv.textContent = (num1*1)*(num2*1);
+						break;
+
+						case 'div':
+						totalDiv.textContent = (num1*1)/(num2*1);
+						break;
+
+						default:
+						alert('Please choose an operator');
+
+					}
 				}		
 
 			}else{
