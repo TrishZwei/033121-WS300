@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Calculator</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="calculator">
+		<input type="number" id="num-one"> 
+		<select id="my-operation">
+			<option value="">Please Choose</option>
+			<option value="add">plus</option>
+			<option value="sub">minus</option>
+			<option value="mul">times</option>
+			<option value="div">divided by</option>
+			<option value="mod">show remainder</option>
+		</select>	
+		<input type="text" id="num-two">	
+		<input type="button" id="my-btn" value="Get Total">
+		<div class="total">0</div>
+	</div>
+
+
+	<script type="text/javascript">
+		'use strict';
+
+		const myCalc = document.querySelector('.calculator');
+		const inputs = myCalc.children
+		console.log(inputs)
+
+		function doMath(){
+			/*
+			get the values
+				check if they are valid numbers
+				IF they are numbers add them together and output the total to the totalDiv
+			*/
+
+			let num1 = Number(inputs[0].value), 
+				num2 = Number(inputs[2].value) 
+			//insert conditional statement here
+			//isNaN(num1)  isNaN(num2)
+
+			if(num1 == '' || num2 == '') {
+				//one of these numbers is Not a Number
+				alert('Please enter a value in both inputs.');
+			}else if( isNaN(num1) || isNaN(num2) ){
+				alert('Please enter a valid numeric value.')
+			}else{
+				//both of these values are numbers! Now what?
+				//compare the operator and do the math asked for:
+				let opValue = inputs[1].value;
+				let total = 0;
+
+				if(opValue == ''){
+					alert('Please choose an operator!');
+					console.log('wut')
+					return false; //tells the function to stop right here and exits out of the function early.
+				}
+
+				if(opValue == 'add'){
+					total = num1 + num2;
+				}else if(opValue == 'sub'){
+					total = num1 - num2
+				}else if(opValue == 'mul'){
+					total = num1 * num2
+				}else if(opValue == 'div'){
+					total = num1 / num2
+				}else if(opValue == 'mod'){
+					//how many times?
+					let divTimes = Math.floor(num1/num2);
+					let s = '';
+					if (divTimes != 1){
+						s = 's';
+					}
+					//total = num1 % num2 //do this first
+					//I had far too much fun here.....
+					let theRemainder = num1 % num2;
+					total = `${num1} gets divided by ${num2} ${divTimes} time${s} and has a remainder of ${theRemainder}`;
+				}else{
+					total = 'Shenanagans!';
+					//what are shenanagans? https://www.merriam-webster.com/dictionary/shenanigan
+				}
+
+				inputs[4].textContent = total
+			}
+
+		}
+
+		inputs[3].addEventListener('click', doMath); //no parenthesis on doMath because the listener will call it.
+
+
+
+		
+	</script>
+</body>
+</html>

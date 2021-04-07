@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Calculator</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="calculator">
+		<input type="number" id="num-one"> 
+		<select id="my-operation">
+			<option value="">Please Choose</option>
+			<option value="add">plus</option>
+			<option value="sub">minus</option>
+			<option value="mul">times</option>
+			<option value="div">divided by</option>
+			<option value="mod">show remainder</option>
+		</select>	
+		<input type="text" id="num-two">	
+		<input type="button" id="my-btn" value="Get Total">
+		<div class="total">0</div>
+	</div>
+
+
+	<script type="text/javascript">
+		'use strict';
+
+		const input1 = document.querySelector('#num-one'),
+			  input2 = document.querySelector('#num-two'),
+			  myBtn = document.querySelector('#my-btn'),
+			  totalDiv = document.querySelector('.total'),//document.getElementsByClassName('total')[0]
+			  myOper = document.querySelector('select'); //gets first item with that tag name same as: document.getElementsByTagName('select')[0]
+
+		function doMath(){
+			/*
+			get the values
+				check if they are valid numbers
+				IF they are numbers add them together and output the total to the totalDiv
+			*/
+
+			let num1 = Number(input1.value), 
+				num2 = Number(input2.value) 
+			//insert conditional statement here
+			//isNaN(num1)  isNaN(num2)
+
+			if(num1 == '' || num2 == '') {
+				//one of these numbers is Not a Number
+				alert('Please enter a value in both inputs.');
+			}else if( isNaN(num1) || isNaN(num2) ){
+				alert('Please enter a valid numeric value.')
+			}else{
+				//both of these values are numbers! Now what?
+				//compare the operator and do the math asked for:
+				let opValue = myOper.value;
+				let total = 0;
+
+				if(opValue == ''){
+					alert('Please choose an operator!');
+					console.log('wut')
+					return false; //tells the function to stop right here and exits out of the function early.
+				}
+
+				if(opValue == 'add'){
+					total = num1 + num2;
+				}else if(opValue == 'sub'){
+					total = num1 - num2
+				}else if(opValue == 'mul'){
+					total = num1 * num2
+				}else if(opValue == 'div'){
+					total = num1 / num2
+				}else if(opValue == 'mod'){
+					//how many times?
+					let divTimes = Math.floor(num1/num2);
+					let s = '';
+					if (divTimes != 1){
+						s = 's';
+					}
+					//total = num1 % num2 //do this first
+					//I had far too much fun here.....
+					let theRemainder = num1 % num2;
+					total = `${num1} gets divided by ${num2} ${divTimes} time${s} and has a remainder of ${theRemainder}`;
+				}else{
+					total = 'Shenanagans!';
+					//what are shenanagans? https://www.merriam-webster.com/dictionary/shenanigan
+				}
+
+				totalDiv.textContent = total
+			}
+
+		}
+
+		myBtn.addEventListener('click', doMath); //no parenthesis on doMath because the listener will call it.
+
+
+
+		
+	</script>
+</body>
+</html>

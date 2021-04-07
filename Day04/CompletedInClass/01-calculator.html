@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Calculator</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="calculator">
+		<input type="number" id="num-one"> <span> + </span>	
+		<input type="text" id="num-two">	
+		<input type="button" id="my-btn" value="Get Total">
+		<div class="total">0</div>
+	</div>
+
+
+	<script type="text/javascript">
+		'use strict';
+
+		const input1 = document.querySelector('#num-one'),
+			  input2 = document.querySelector('#num-two'),
+			  myBtn = document.querySelector('#my-btn'),
+			  totalDiv = document.querySelector('.total');
+			  //document.getElementsByClassName('total')[0]
+
+		function doMath(){
+			/*
+			get the values
+				check if they are valid numbers
+				IF they are numbers add them together and output the total to the totalDiv
+			*/
+
+			let num1 = Number(input1.value), 
+				num2 = Number(input2.value) 
+			//insert conditional statement here
+			//isNaN(num1) and isNaN(num2)
+
+			totalDiv.textContent = num1+num2;
+
+		}
+
+		myBtn.addEventListener('click', doMath); //no parenthesis on doMath because the listener will call it.
+
+
+
+		
+	</script>
+</body>
+</html>
