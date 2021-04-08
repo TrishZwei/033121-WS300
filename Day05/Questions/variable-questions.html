@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Various Loops</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="container">stuff goes here</div>
+	<script type="text/javascript">
+		'use strict'; //ensures use of ES6 and keywords for variables this keeps scope consistant
+
+//These lines of code (commented out) create errors because the variables do not exist yet
+		//console.log(my_var) 
+		//console.log(myVar2)
+
+//this line of code will render out 'undefined'. JS knows what it is, but not its value as it has been hoisted, but not assigned a value.
+		console.log(myVar3);		 
+
+
+
+		//let and const do not hoist
+		let my_var = 'Hello';
+		const myVar2 = 'This cannot be changed.';
+		var myVar3 = 'Wooo! I\'m wild!'; // \ escape character tells JS to see the following character as a character and not a command, in this case as the end of the single quote string.
+
+		//all of the following will output their values to the console.
+		console.log(my_var);		 
+		console.log(myVar2);		 
+		console.log(myVar3);		 
+
+		//These will create errors
+		let my
+
+
+
+
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Problem 6</title>
+</head>
+<body>
+	<h1>Problem 6</h1>
+	from <input type="number" id="num1"> to <input type="number" id="num2">
+	<button id="my-btn">Display Random Number</button>
+	<div id="output" class="output"></div>
+	<script type="text/javascript">
+		'use strict'; //makes sure we use keywords for variables!
+
+		function getRandomInt(min = 1, max = 100){
+
+			return Math.floor( Math.random() * (max-min+1) ) + min;
+
+		}
+
+		const myBtn = document.querySelector('#my-btn');
+
+		//myBtn.onclick =
+
+		myBtn.addEventListener('click', function(){
+			//store our numbers
+			let num1 = document.querySelector('#num1').value;
+			let num2 = document.querySelector('#num2').value;
+			let message = '';
+
+			if(num1 != '' && num2 != ''){
+				message = getRandomInt((num1*1), (num2*1));
+				
+			}else{
+				message = getRandomInt(); //returns default
+			}
+			document.getElementById('output').textContent = message;
+
+		})
+
+
+
+	</script>
+</body>
+</html>
