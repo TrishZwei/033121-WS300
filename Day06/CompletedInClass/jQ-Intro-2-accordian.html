@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jQ Accordion</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+		.accordion p{
+			display: none;
+		}
+
+		h3{
+			border-bottom: 1px solid black;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="accordion">
+		<h3>Title 1</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+		</p>
+	</div>
+	<div class="accordion">
+		<h3>Title 2</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+		</p>
+	</div>
+	<div class="accordion">
+		<h3>Title 3</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+		</p>
+	</div>
+
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	$('.accordion h3').on('click', function(){
+		console.log(this) ; //this is a keyword in JS
+		let thisTitle = $(this); 
+		thisTitle.next().slideToggle(1000);
+
+	})
+
+	
+
+</script>
+</body>
+</html>

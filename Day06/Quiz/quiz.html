@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Problem 5</title>
+	<style type="text/css">
+		#box{
+			width: 50px;
+			height: 50px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<h1>Quiz 1</h1>
+<main>
+		<article>
+			<h2>Article Title</h2>
+			<p class="one">Paragraph 1</p>
+			<p class="two">Paragraph 2</p>
+			<p class="three">Paragraph 3</p>
+			<p class="four">Paragraph 4</p>			
+		</article>
+		<p class="five">Paragraph 5</p>
+</main>
+<script type="text/javascript">
+	console.log(document.querySelector('.two'))
+	console.log(document.querySelectorAll('.two')[0])
+	console.log(document.querySelectorAll('p')[1])
+	console.log(document.getElementsByTagName('p')[1])
+	console.log(document.getElementsByClassName('two')[0])
+	console.log(document.body.children[1].children[0].children[2])//long way
+
+</script>
+</body>
+</html>

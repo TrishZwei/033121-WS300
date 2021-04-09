@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jQ Intro</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+		.red{
+			color:red;
+		}
+
+		.blue{
+			color:blue;
+		}
+
+		#para-2{
+			display: none;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="my-div">A Div with Id.</div>
+	<p id="para-1">Paragraph with #para-1</p>
+	<p id="para-2">Paragraph with #para-2</p>
+	<p class="blue">Paragraph with .blue</p>
+	<p class="blue">Paragraph with .blue</p>
+	<input type="text" name="first_name" placeholder="enter first name">
+	<input type="button" value="change stuff 2" id="my-btn" class="my-button">
+
+
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	//document.querySelector('#my-div').style.cssText = "background-color: green; font-size:20px; color: pink; width: 50px;";
+	
+	//multi property css jquery method
+	$('#my-div').css({
+		'background-color':'green',
+		'font-size' : '20px',
+		'color' : 'pink',
+		'width' : '50px'
+	})
+
+	//vanilla JS:
+	//anon function
+	// document.querySelector('#my-btn').onclick = function(){
+	// 	alert('clicked!');
+	// }
+
+//.click also works
+	$('#my-btn').on('click', function(){
+		//alert('clicked')
+		//go through all the p tags and find which elements have the class of blue
+
+		if( $('p').hasClass('blue')){
+			$('.blue').removeClass('blue').addClass('red');
+		}else{
+			$('.red').removeClass('red').addClass('blue');			
+		}
+
+		//animate functions have the following optional arguments:
+		//time in ms, easing, callback
+		$('#para-1').fadeToggle(2000); //default value is 400ms
+		//fadeToggle fades out if element display is visible, and in if element display is not visible
+		$('#para-2').fadeToggle(3000, 'linear', function(){
+			//this is called a callback function
+			//it runs when the animation is complete
+			alert('finished animating!');
+
+		})
+
+
+
+	})
+
+
+</script>
+</body>
+</html>
