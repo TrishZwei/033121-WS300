@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Box Multiple</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+		.box{
+			background-color: red;
+			height: 30px;
+			width: 30px;
+			position: absolute;
+			top: 50px;
+			left: 50px;
+		}
+
+		.blue{
+			background-color: blue;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box"></div>	
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box blue"></div>
+
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js" integrity="sha512-ueXKWOB9liraz677EVGxz6H8nLk3RJjNv8Bfc0WrO9K9NyxROX3D/6bvZ9RYvAcYFxsVU+I0Jt/AMK0Nk8ya5g==" crossorigin="anonymous"></script>
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	const box = $('.box'); //only one we need to worry about at this point...
+
+	//box.animate({'top':'+=200'}, 400)	
+
+	box.on('click', function(){
+		$(this).transit({'top':'+='+ getRandomInt(-150, 150), 'left':'+='+ getRandomInt(-150, 150), 'transform':'scale('+getRandomInt(1,3)+','+getRandomInt(1,3)+')' })
+	})
+	
+
+	function getRandomInt(min = 1, max = 100){
+		return Math.floor(Math.random() * (max - min+1))+min;
+	}
+
+
+
+</script>
+</body>
+</html>
