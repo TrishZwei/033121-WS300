@@ -77,30 +77,53 @@ body{
 <script type="text/javascript">
     'use strict';
     $('#Div1').on('click dblclick', {name:'div1'}, function(e){
-    //alert('click');
-    //this empties out all text from elements that are children of detail-line that have an id
-    $('.detail-line span[id]').text('');
-    //document.querySelectorAll('.detail-line span[id]')[0].textContent = '' this only gets one... to do them all this would have to be looped
-
-    $('#evtType').text(e.type);
-    $('#evtWhich').text(e.which);
-    $('#evtTarget').text(e.target);
-
-    if(e.relatedTarget){
-        $('#evtRelated').text(e.relatedTarget.tagName); 
-    }
-    $('#evtPageX').text(e.pageX);
-    $('#evtPageY').text(e.pageY);
-    $('#evtClientX').text(e.clientX);
-    $('#evtClientY').text(e.clientY);
-
-    if(e.data){
-        $('#evtData').text(e.data.name);
-    }
+        updateEventDetails(e); //passes the event object that has been stored in the anon function e variable
     })
 
 
     $('#Div2').on('mouseenter mouseleave',  {name:'div2'} , function(e){
+        updateEventDetails(e); //passes the event object that has been stored in the anon function e variable
+
+    })
+
+    $('#Div3').on('mousemove', {name: 'div3'}, function(e){
+        updateEventDetails(e);
+
+    })
+
+
+    $('#input1').on('focus change blur', {name: 'input1'}, function(e){
+        e.stopPropagation() // prevents event from bubbling up the DOM 
+      console.log(e.type);
+      console.log($(this).val()) //value of input
+      console.log($(this).val().length) //number of characters
+        updateEventDetails(e);
+
+    })
+
+    $(document).on('keydown keyup keypress', {name: 'dockeys'}, function(e){
+        console.log('heard')
+        if(e.type == 'keyup'){
+            $('#keyU').text(e.which); //tells me the keycode for what was released.
+        }
+        if(e.type == 'keydown'){
+            $('#keyD').text(e.which); //tells me the keycode for what was sent down to the keyboard.
+        }
+       if(e.type == 'keypress'){
+            $('#keyP').text(e.which); //tells me the keycode for what was pressed.
+        }
+
+
+
+    })
+
+    //DRY Don't Repeat Yourself
+    /*
+    *A function that updates event details section on page with informmation from the event that just occured
+   *@param : e, event object
+    */
+
+    function updateEventDetails(e){
     //alert('click');
     //this empties out all text from elements that are children of detail-line that have an id
     $('.detail-line span[id]').text('');
@@ -120,9 +143,13 @@ body{
 
     if(e.data){
         $('#evtData').text(e.data.name);
-    }
+        }
 
-    })
+    } //end of updateEventDetails
+
+
+
+
 
 
 

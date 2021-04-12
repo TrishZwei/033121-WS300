@@ -105,7 +105,7 @@ body{
     */
 
 //blur happens at same time as change, I think slightly after
-    $('#input-1').on('focus change blur', {name:'input'}, function(evt){
+    $('#input-1').on('focus blur', {name:'input'}, function(evt){
         evt.stopPropagation();
         console.log(evt.type);
 
