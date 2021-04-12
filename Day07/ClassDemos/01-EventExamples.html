@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>Using the jQuery Event Object</title>
+<style type="text/css">
+body{
+    font-size: 16px;
+    font-family: Verdana;
+}
+
+.smallbox{
+    background-color: cornflowerblue;
+    padding: .7em;
+    margin: .7em;
+    min-height: 150px;
+    width: 200px;
+    float: left;
+    border: 2px solid black;
+}
+
+#event-details{
+    margin: .5em;
+    padding: .1em;
+}
+.clear{
+     clear: both;
+}
+
+</style>
+</head>
+<body>
+    <h1>Using the jQuery Event Object</h1>
+    <p>The jQuery Event object contains detailed information about each event that occurs in the page.</p>
+    <p>Interact with each of the DIV elements below to see event-related information for each.</p>
+    <div id="Div-1" class="smallbox">This element is tied to a click. Click here (Div-1) and see what happens below.</div>
+    <div id="Div-2" class="smallbox">This element is tied to a mouseenter and a mouseleave. Mouse over and out and see what happens below (Div-2)</div>
+    
+    <div id="Div-3" class="smallbox">Mouse over and keep mousing over and see what happens. (Div-3)</div>
+
+    <div class="clear">Type some text here: <input type="text" id="input-1"></div>
+    <div id="event-details">
+        <h3>Event Details</h3>
+        <div class="detail-line">
+            <span class="lineitem">Event type: </span><span class="lineitem" id="evt-type"></span>
+            <span class="lineitem">Key/Button: </span><span class="lineitem" id="evt-which"></span>
+        </div>
+        <div class="detail-line">
+            <span class="lineitem">Target: </span><span class="lineitem" id="evt-target"></span>
+            <span class="lineitem">Related Target: </span><span class="lineitem" id="evt-related"></span>
+        </div>
+        <div class="detail-line">
+            <span class="lineitem">pageX: </span><span class="lineitem" id="evt-pageX"></span>
+            <span class="lineitem">pageY: </span><span class="lineitem" id="evt-pageY"></span>
+        </div>
+        <div class="detail-line">
+            <span class="lineitem">clientX: </span><span class="lineitem" id="evt-clientX"></span>
+            <span class="lineitem">clientY: </span><span class="lineitem" id="evt-clientY"></span>
+        </div>
+        <div class="detail-line">
+            <span class="lineitem">data: </span><span class="lineitem" id="evt-data"></span>
+        </div>
+    </div>
+       <div id="kbevent-differences">
+        <h3>keyup vs keypress vs keydown</h3>
+        <div class="detail-line">
+            <span class="lineitem">Key code for keyup: </span><span class="lineitem" id="key-u"></span>
+        </div> 
+        <div class="detail-line">   
+            <span class="lineitem">Key code for keydown: </span><span class="lineitem" id="key-d"></span>
+        </div> 
+        <div class="detail-line">
+            <span class="lineitem">Key code for keypress: </span><span class="lineitem" id="key-p"></span>
+        </div>    
+        </div>
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    'use strict';
+    $('#Div-1').on('click dblclick', {name:'div1'}, function(evt){
+        //evt stands for event and that parameter captures the event data
+        //console.log(evt.type); //what type of event that we were listening for happened
+
+        //update event details
+        updateEventDetails(evt);
+
+    })
+
+    $('#Div-2').on('mouseenter mouseleave', {name:'div2'},function(evt){
+        //evt stands for event and that parameter captures the event data
+        //console.log(evt.type); //what type of event that we were listening for happened
+
+        //update event details
+        updateEventDetails(evt);
+
+    })
+
+    $('#Div-3').on('mousemove', {name: 'div3'}, function(evt){
+        updateEventDetails(evt);
+    })
+
+    /*
+    /A function that updates event details section on page with informmation from the event that just occured
+    /@param : evt, event object
+    */
+
+//blur happens at same time as change, I think slightly after
+    $('#input-1').on('focus change blur', {name:'input'}, function(evt){
+        evt.stopPropagation();
+        console.log(evt.type);
+
+        updateEventDetails(evt); 
+         //prevents event from bubbling up to the top of the DOM
+
+//        console.log(this.value);//vanilla
+        console.log($(this).val().length); //jQuery
+//$(this).val().length
+
+    })
+
+    $(document).on('keydown keyup keypress', {name:'dockeys'}, function(evt){
+        console.log('heard');
+// stopPropagation reference - https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_event_stoppropagation        
+//reminder keyCode and which seem to carry the same values
+        if(evt.type == 'keyup'){
+            $('#key-u').text(evt.which + ', '+String.fromCharCode(evt.which)+', '+evt.keyCode)
+        }
+        if(evt.type == 'keydown'){
+            $('#key-d').text(evt.which + ', '+String.fromCharCode(evt.which)+', '+evt.keyCode)
+        }
+        if(evt.type == 'keypress'){
+            $('#key-p').text(evt.which + ', '+String.fromCharCode(evt.which)+', '+evt.keyCode)
+        }
+
+       // updateEventDetails(evt); //comment back in to see how this differs from the code above.
+
+    })
+
+
+    function updateEventDetails(evt){
+        //evt stands for event and that parameter captures the event data
+        //console.log(evt.type); //what type of event that we were listening for happened
+
+        //update event details
+
+        $('.detail-line span[id]').text('')//clears out the elements with the info to make way for the next bunch of stuff that comes in. 
+        $('#evt-type').text(evt.type);
+        $('#evt-which').text(evt.which);
+        $('#evt-target').text(evt.target.tagName);
+
+        if(evt.relatedTarget){
+            $('#evt-related').text(evt.relatedTarget.tagName)//gets element that is related but did not call the event to run
+        }
+
+        $('#evt-pageX').text(evt.pageX);
+        $('#evt-pageY').text(evt.pageY);
+
+        $('#evt-clientX').text(evt.clientX);
+        $('#evt-clientY').text(evt.clientY);
+
+        if(evt.data){
+            $('#evt-data').text(evt.data.name);
+        }
+
+    } //end updateEventDetails
+
+</script>
+</body>
+</html>
