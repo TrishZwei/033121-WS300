@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Glossary of Terms</title>
+<style type="text/css">
+	body{
+		font-family: Verdana,sans-serif;
+	}
+
+.my-input {
+  width: 100%; /* Full-width */
+  font-size: 16px; 
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+  box-sizing: border-box;
+}
+
+.list {
+  /* Remove default list styling */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li{
+  border: 1px solid #ddd; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6; /* Grey background color */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  display: block; /* Make it into a block element to fill the whole list */
+}
+
+div.message{
+	display: none;
+}
+
+.list li:hover {
+  background-color: #eee; /* Add a hover effect to all links, except for the message */
+}
+
+h3{
+	text-transform: capitalize;
+}
+
+h3 + p{
+	display: none;
+}
+
+.accordion.list .active{
+	background-color: rgba(230,230,0,.7);
+}
+
+
+</style>
+
+</head>
+<body>
+<input type="text" class="my-input" placeholder="Search for terms...">
+<h2>Glossary</h2>
+<div class="message"></div>
+<ul class="list accordion">
+	
+</ul>
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript" src="glossary.js"></script>
+<script type="text/javascript">
+//the variable glossary is brought in with the glossary.js file. It is nothing but json. 
+console.log(glossary[0].term, glossary[0].def )
+//this is a combonation of jQ and VJS
+	glossary.forEach( function(item, index, list){
+		//does a forEach loop on the glossary array (vjs)
+		//arguments: item is the same as list[index], index is the index of the item, list is the array itself)
+		let li = $('<li>')
+		let h3 = $('<h3>').text(list[index].term).addClass('accordion-header')
+		let p = $('<p>').text(item.def).addClass('accordion-content');
+		li.append(h3).append(p)
+		li.appendTo('.list');
+	})
+
+
+	//filtering:
+	$('.my-input').keyup(function(){
+	
+  // Declare variables
+  let input, 
+  	  filter, 
+  	  ul, 
+  	  li, 
+  	  a, 
+  	  i, 
+  	  txtValue;
+ 
+  input = $('.my-input');
+  filter = input.val()
+  filter = filter.trim().toUpperCase();
+
+
+  ul = $(".list");
+  title = $('.list li h3');
+
+  // Loop through all list items, and hide those who don't match the search query
+
+  title.each( function(i){
+  	a = $(this);
+	  	txtValue = a.text();
+  		if(txtValue.toUpperCase().indexOf(filter) > -1){
+  			//index of returns -1 when not found, so a match has been found!
+  			a.parent().show();
+  		}else{
+  			a.parent().hide();
+  		}
+  })
+//if no elements shown: show message: 'filter + was not found on the top 100 names list.'
+	
+	//:visible will tell us if the element is visible or not
+ if($('.list li:visible').length == 0){
+ 	//no lis are visible
+ 	$('.message').html(filter+' was not found in the glossary do you want to add it? <button>Add Term</button>').show();
+ 		$('button').click( function(){
+			alert('I could show a form now...') 			
+ 		})
+ }else{
+ 	$('.message').hide();
+ }
+
+
+
+})
+
+
+$('.accordion').on('click', 'li', function(){
+	//the second argument tells it to specify the li within the class accordion
+	//console.log($(this).text())
+	let clickedLi = $(this);
+
+	//remember the bang is the not operator so it checks to see if the condition is false.
+	if($('.active').length > 0 && !( clickedLi.hasClass('active') ) ){
+		//we have at least one class active on the page and... it is not this li
+		$('.active').each( function(){
+			$(this).toggleClass('active')
+			$(this).children('p').slideToggle();
+		})
+	}	
+
+	clickedLi.toggleClass('active')
+		clickedLi.children('p').slideToggle();
+
+})
+
+</script>
+</body>
+</html>

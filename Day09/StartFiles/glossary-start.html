@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Glossary of Terms</title>
+<style type="text/css">
+	body{
+		font-family: Verdana,sans-serif;
+	}
+
+.my-input {
+  width: 100%; /* Full-width */
+  font-size: 16px; 
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+  box-sizing: border-box;
+}
+
+.list {
+  /* Remove default list styling */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li{
+  border: 1px solid #ddd; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6; /* Grey background color */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  display: block; /* Make it into a block element to fill the whole list */
+}
+
+div.message{
+	display: none;
+}
+
+.list li:hover {
+  background-color: #eee; /* Add a hover effect to all links, except for the message */
+}
+
+h3{
+	text-transform: capitalize;
+}
+
+h3 + p{
+	display: none;
+}
+
+.accordion.list .active{
+	background-color: rgba(230,230,0,.7);
+}
+
+
+</style>
+
+</head>
+<body>
+<input type="text" class="my-input" placeholder="Search for terms...">
+<h2>Glossary</h2>
+<div class="message"></div>
+<ul class="list accordion">
+	
+</ul>
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

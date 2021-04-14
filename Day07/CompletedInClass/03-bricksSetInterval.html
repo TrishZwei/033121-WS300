@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Set Interval Example</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+		div{
+			width: 40px;
+			height: 10px;
+			background-color: firebrick;
+			border: 1px solid white;
+			float: left;
+		}
+
+		button{
+			position: absolute;
+			top: 20px;
+			left: 20px;
+		}
+
+		.stop{
+			left: 100px;
+		}
+
+
+	</style>
+</head>
+<body>
+	<button class="start">Start</button>
+	<button class="stop">Stop</button>
+
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	'use strict'; 
+
+	let brickTimer; //saving space for our timer
+	let isAnimating = false; //start value of isAnimating
+	//this is a boolean
+	let numBricks = 0; //lets us update id of bricks
+
+	function generateBricks(){
+		numBricks++; //adds 1 numBricks += 2 would add 2
+		$('<div>').appendTo('body').attr('id', numBricks);
+		//setInterval runs multiple times, until cleared
+	}
+
+	$('.start').click( function(){
+		//generateBricks();
+
+		if(isAnimating == false){
+			//if I don't use let in this scope it resets the value to the brickTimer variable on the global scope
+			brickTimer = setInterval(generateBricks, 1000/30)
+			isAnimating = true;
+		 }
+	})
+
+	$('.stop').click( function(){
+		//generateBricks();
+		isAnimating = false;
+		clearInterval(brickTimer);
+	})
+
+	//scope example
+	//global scope is not in a function
+	let city = 'Paris';
+	let city2 = 'Las Vegas';
+	console.log(city, city2); //Paris, Las Vegas
+
+	function changeCity(){
+		//local scope
+		let city = 'San Diego'; //does not reset the value of city, but keeps it local to this function
+		city2 = 'St. Louis';
+		console.log(city, city2); //San Diego, St. Louis
+	}
+
+	//global
+	console.log(city, city2); //Paris and St. Louis
+
+
+
+//brickTimer = setTimeout(generateBricks, 1000/30);
+	
+</script>
+</body>
+</html>

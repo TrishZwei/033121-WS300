@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Store List</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 20px;
+		}	
+
+		h1{
+			text-align: center;
+		}
+
+		input{
+			display: block;
+			height: 40px;
+			font-size: 1em;
+			margin: 0 auto 5px;
+		}
+
+		.button{
+			background-color: grey;
+			border-radius: 20px;
+			color: white;
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			padding: 5px;
+			margin: 5px auto;
+			cursor: pointer;
+		}
+
+		#wrapper{
+			margin: 0 auto;
+			width: 500px;
+		}
+
+		.strike{
+			text-decoration: line-through;
+		}
+
+	</style>
+</head>
+<body>
+	<main id="wrapper">
+		<h1>Store List</h1>
+		<ul id="store-list"><!-- empty on purpose --></ul>
+		<input type="text" id="new-item">
+		<input type="number" id="quantity" min="1" placeholder="# of items" value="1">
+		<div id="add-item" class="button">Add Item</div>		
+		<div id="clear-list" class="button">Clear List</div>		
+	</main>
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	let storeList = []; //stores our list of items
+
+	$('#add-item').on('click', function(){
+		let jsObj = {}; 
+		//items in jsObj will be: text:, amt:, strike 
+
+		//grab value of input box and add it to the list
+		let newItem = $('#new-item').val(); //.val() works like .value in  VJS
+		newItem = newItem.trim(); //takes away empty space on either side of the string value
+
+		//parseInt (creates whole number out of text. ex: "10px" becomes 10, px10 would come back as NaN)
+
+		let amount = parseInt($('#quantity').val());
+
+
+		if(newItem != ''){
+			//has a value!
+			newItem = newItem.toLowerCase(); //converts string to lowercase
+			if(amount <= 0 || isNaN(amount) || amount == ''){
+				amount = 1; //will have at least 1 as its value
+			}
+
+			jsObj.text = newItem //sets the property of text to the value of newItem
+			jsObj.amt = amount //sets the property of amt to the value of amount
+			jsObj.strike = false;
+
+			storeList.push(jsObj); 
+			storeList.sort(); //sorts the array in aphabetical order
+		}
+		console.log(storeList)
+		$('#store-list').text(''); 
+		//VJS: document.querySelector('#store-list').textContent = ''
+
+		//grab the items from the array and make list items for the ul
+		for(let i = 0; i < storeList.length; i++){
+			let theText = storeList[i].text;
+			let amt = storeList[i].amt;
+			let strike = storeList[i].strike;
+
+
+			let newLi = $('<li>').text(theText+'-'+amt);
+
+			if(strike){
+				newLi.addClass('strike');
+			}
+
+
+			newLi.appendTo('#store-list');
+			//newLi.click(strikeItem(this)) - this is wrong.
+			newLi.click(function(){
+				//$(this).addClass('strike');
+				strikeItem(this)
+			})
+		}
+
+	})
+
+//function attached to all li in our list when they are created on the DOM
+
+//this function matches the li to the corresponding array within the storeList
+	function strikeItem(ele){
+		let theItem = $(ele) //passes the element and puts it in a jquery wrapper/object
+
+		let theText = theItem.text(); //when we pass no arg in .text() method it gets the current value:
+		theText = theText.split('-') //split will split a string into an array
+		console.log(theText);
+		theText = ''+theText[0]
+		for(let i = 0; i<storeList.length; i++){
+			if(theText == storeList[i].text){
+				//console.log(storeList[i].amt)
+				storeList[i].strike = true;
+			}
+
+		}
+
+		theItem.addClass('strike');
+
+	}
+
+
+
+	
+</script>
+</body>
+</html>

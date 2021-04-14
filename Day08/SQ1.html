@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jQ Template</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}	
+	</style>
+</head>
+<body>
+<div id="parent">
+	<h1>Title</h1>
+	<div class="children">Child One</div>	
+	<div class="children">Child Two</div>	
+	<div class="children">Child Three</div>	
+	<div class="children">Child Four</div>	
+</div>
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	$('.children').on('click dblclick', function(e){
+		e.preventDefault(); //this says don't do your normal behavior
+		e.stopPropagation(); //prevents bubbling - parent listeners from activating
+		console.log(e.type, e.target.textContent);
+	})
+
+	$('#parent').on('click', function(e){
+		console.log(e.type, e.target.textContent);
+	})
+	
+</script>
+</body>
+</html>

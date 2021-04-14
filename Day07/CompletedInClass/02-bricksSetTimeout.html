@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Set Timeout Example</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+		div{
+			width: 40px;
+			height: 10px;
+			background-color: firebrick;
+			border: 1px solid white;
+			float: left;
+		}
+
+		button{
+			position: absolute;
+			top: 20px;
+			left: 20px;
+		}
+
+		.stop{
+			left: 100px;
+		}
+
+
+	</style>
+</head>
+<body>
+	<button class="start">Start</button>
+	<button class="stop">Stop</button>
+
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	'use strict'; 
+
+	let brickTimer; //saving space for our timer
+	let isAnimating = false; //start value of isAnimating
+	//this is a boolean
+	let numBricks = 0; //lets us update id of bricks
+	let equality = '0'; //this is a String
+
+	function generateBricks(){
+		numBricks++; //adds 1 numBricks += 2 would add 2
+		$('<div>').appendTo('body').attr('id', numBricks);
+		//setTimeout runs only once!
+		//first arg is function to be called, second arg is time in ms.
+		brickTimer = setTimeout(generateBricks, 1000/30); //calls itself to run
+		//forces 30FPS on browser
+	}
+
+	$('.start').click( function(){
+		//generateBricks();
+		//an equality example:
+		if(equality === '0'){
+			console.log('strict equality', equality);
+		}
+
+		if ( equality == 0 ){
+			console.log('value equality?', equality)
+		}
+
+		if ( equality === 0 ){
+			console.log('value and type equality')
+		}else{
+			console.log('value but not type equality')
+		}
+
+
+
+		if(isAnimating == false){
+		 	generateBricks(); //generateBricks is only called from the start button once.
+		 	isAnimating = true;
+		 }
+	})
+
+$('.stop').click( function(){
+		//generateBricks();
+		isAnimating = false;
+		clearTimeout(brickTimer);
+	})
+
+
+
+
+
+//brickTimer = setTimeout(generateBricks, 1000/30);
+	
+</script>
+</body>
+</html>
