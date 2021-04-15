@@ -81,9 +81,9 @@ h3 + p{
   left: 50%;
   max-width: 450px;
   transform: translate(-50%, -50%);
-  color: #4a5666;
+/*  color: #4a5666;
   background: linear-gradient(to bottom right, white, #F8F8F8) !important;
-  box-shadow: 0 15px 20px -15px rgba(0, 0, 0, 0.3), 0 35px 50px -25px rgba(0, 0, 0, 0.3), 0 85px 60px -25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 20px -15px rgba(0, 0, 0, 0.3), 0 35px 50px -25px rgba(0, 0, 0, 0.3), 0 85px 60px -25px rgba(0, 0, 0, 0.1);*/
   z-index: 3;
   visibility: hidden;
   opacity: 0;
@@ -168,7 +168,7 @@ console.log(glossary[0].term, glossary[0].def )
   // Loop through all list items, and hide those who don't match the search query
 
   title.each( function(i){
-  	a = $(this);
+  	 a = $(this);
 	  	txtValue = a.text();
   		if(txtValue.toUpperCase().indexOf(filter) > -1){
   			//index of returns -1 when not found, so a match has been found!
@@ -212,18 +212,19 @@ $('.accordion').on('click', 'li', function(){
 	}	
 
 	clickedLi.toggleClass('active')
-		clickedLi.children('p').slideToggle();
+	clickedLi.children('p').slideToggle();
 
 })
 
 
 
-
+//modal
 $(".close, .overlay").on("click", function(){
    $(".overlay, .modal").removeClass("active");
 });
 
 $(document).keyup(function(e) {
+  //e.keyCode = e.which
   if (e.keyCode === 27) {
     $(".overlay, .modal").removeClass("active");
   }
