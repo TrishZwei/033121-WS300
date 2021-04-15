@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Accordion 2</title>
+	<style type="text/css">
+		html{
+			min-height: 100%; /*makes gradient look nice*/
+		}
+
+			body{
+				font-family: Verdana;
+				background: linear-gradient(to bottom right, #3D4258, #6670A0, #9688B4);
+				line-height: 1.5em;
+			}
+			h1{
+				font-size: 3em;
+				color: white;
+				text-align: center; 
+			}
+
+			.accordion{
+				background: linear-gradient(to bottom right, white, #F8F8F8);
+				max-width: 400px;
+				margin: 0 auto;
+			}
+
+
+			.accordion-header{
+				border-bottom: 1px solid #DDE0E7;
+				color: #2A313A;
+				cursor: pointer;
+				padding: 1.5rem;
+			}
+
+			.accordion-header:hover{
+				background: #F6F7F9;
+			}
+
+			.accordion-content{
+				display: none;
+				border-bottom: 1px solid #DDE0E7;
+				padding: 1.5rem; 
+				color: #4A5666;
+			}
+
+			.accordion-header::before{
+				content:'';
+				vertical-align: middle;
+				display: inline-block;
+				width: .75rem;
+				height: .75rem;
+				border-radius: 50%;
+				background-color: #B1B5BE;
+				margin-right: .75rem;
+			}
+
+			.active.accordion-header::before{
+				background-color: #FC6468;
+			}
+	</style>
+</head>
+<body>
+	<h1>Accordion Demo 2</h1>
+	<div class="accordion">
+		<div class="accordion-header">Header 1</div>
+		<div class="accordion-content">
+			<p>Stuff for the first section goes in here.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div class="accordion-header">Header 2</div>
+		<div class="accordion-content">
+			<p>Stuff for the second section goes in here.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>		
+		<div class="accordion-header">Header 3</div>
+		<div class="accordion-content">
+			<p>Stuff for the third section goes in here.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>				
+	</div>
+
+<!-- best practice put scripts at the bottom -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<!-- any plugins/extensions on jQuery go here-->
+
+<script type="text/javascript">
+	'use strict';
+
+	$('.accordion').on('click', '.accordion-header', function(){
+		//checks to see if any other elements have the class of active
+		if($('.active').length > 0 && !($(this).hasClass('active'))){
+			$('.active').each( function(){
+				//finds all the items with the class of active, removes the class and then finds its immediate sibling and closes the sibling with slideToggle
+				$(this).toggleClass('active').next().slideToggle();
+			})
+		}
+
+		$(this).toggleClass('active').next().slideToggle();
+	})
+
+</script>
+</body>
+</html>
