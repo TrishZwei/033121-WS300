@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lightbox</title>
+<style type="text/css">
+body{
+    font-family: Verdana;
+    line-height: 1.5;
+}
+
+.overlay{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,.5);
+opacity: 0;
+transition: .5s ease;
+z-index: -1;
+}
+
+.overlay.active{
+	opacity: 1;
+	z-index: 2;
+
+}
+
+.modal{
+	max-height: calc(100% - 100px);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #4A5666;
+	background-color: white;
+	max-width: 500px;
+	z-index: 3;
+	visibility: hidden;
+	opacity: 0;
+	transition: .5s ease; 
+	text-align: center;
+}
+
+.modal.active{
+	visibility: visible;
+	opacity: 1;
+}
+
+.modal h2{
+	margin: 0;
+	padding: 1rem;
+	border-bottom: 1px solid #DDE0E7;
+}
+
+.modal p, .site-wrap p{
+	padding: 1rem;	
+}
+
+button{
+	display: inline-block;
+	background: navy;
+	color: white;
+	font-size: 1.2rem;
+	padding: 1rem 2rem;
+	border-radius: 45px;
+	margin: .25rem 0;
+	vertical-align: middle;
+	line-height: 1rem;
+	overflow: visible;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+button:hover{
+	background: cornflowerblue;
+}
+
+button.close{
+	margin: 0 0 1rem;
+	background: #FC6468;
+	border: 1px solid white;
+}
+
+button.close:hover{
+	border:1px solid navy;
+}
+
+button:focus{
+	outline: transparent;
+}
+
+.lb-btn{
+	cursor: pointer;
+}
+
+.modal img{
+	width: 90%;
+	margin: 0 auto;
+}
+
+</style>
+</head>
+<body>
+	<h1>Lightbox Demo</h1>
+	<img src="https://picsum.photos/150/150?image=1051" class="lb-btn" data-content="https://picsum.photos/500/500?image=1051" alt="Beautiful Lake Pier" title="Picture 1">
+
+	<img src="https://picsum.photos/150/150?image=1057" class="lb-btn" data-content="https://picsum.photos/500/500?image=1057" alt="Cliffside over the ocean" title="Picture 2">
+	
+	<img src="https://picsum.photos/150/150?image=1053" class="lb-btn" data-content="https://picsum.photos/500/500?image=1053" alt="Seafoam from above" title="Picture 3">
+	
+	<img src="https://picsum.photos/150/150?image=1050" class="lb-btn" data-content="https://picsum.photos/500/500?image=1050" alt="Arpegio Straights" title="Picture 4">
+
+	<div class="overlay"></div>
+	<div class="modal">
+		<h2>Picture Title</h2>
+		<img src="https://picsum.photos/500/500?image=1053">
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		</p>
+		<button class="close">Close</button>
+	</div>
+	<div id="site-wrap">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>		
+	</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	'use strict';
+
+	$('.lb-btn').click( function(){
+
+		//'this' is a keyword in JS
+		/*
+		title of image
+		path to full size image
+		description of image
+		Then insert these values into the modal window
+		*/
+		let img = $(this);
+		let theDesc = img.attr('alt'); //gives me value of what's in the alt tag
+		let thePath = img.data('content'); //gives me the path to the full size image
+		console.log(thePath)
+		let theTitle = img.attr('title'); //gets the value of the title attribute
+		$('.modal img').attr('src', thePath);
+		$('.modal h2').text(theTitle);
+		$('.modal p').text(theDesc);		
+
+		$('.modal, .overlay').addClass('active');
+	})
+
+	$('.close').click( function(){
+		$('.modal, .overlay').removeClass('active')
+	})
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

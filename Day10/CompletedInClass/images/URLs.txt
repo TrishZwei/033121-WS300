@@ -1,4 +1,5 @@
 List of URLs for you to use for images:
+
 thumb: https://picsum.photos/150/150?image=1051
 full: https://picsum.photos/500/500?image=1051
 
