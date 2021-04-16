@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+	<meta charset="utf-8">
+	<title>Side Slide Show</title>
+<style type="text/css">
+	body{
+		font-family: Verdana,sans-serif;
+	}
+
+	.outer-container{
+		position: relative;
+		max-width:  600px;
+		margin: 0 auto;
+		border: 1px solid black;
+	}
+
+	.inner-container{
+		position: relative;
+		overflow: hidden;
+	}
+
+	.slide-container{
+		width: 100%;
+		height: 0;
+		max-width:600px;
+		max-height: 400px;
+		padding-bottom: 66.666666666%;
+		/* 	padding bottom is relative to the width
+			600/400 = 1.5 aspect-ratio
+			100/1.5 = 66.66... %
+		*/
+		margin: 0 auto;
+		position: relative;
+		overflow: hidden;
+		line-height: 1rem;
+	}
+
+	.slide-container div.slide{
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+
+	.slide-container div.slide img{
+		width: 100%;
+		max-width: 100%;
+		padding: 0px;
+	}
+
+/* button & pager styles go here for later slider */
+
+
+</style>
+
+</head>
+<body>
+	<h1>Side Slider</h1>
+	<div class="outer-container">
+		<div class="inner-container">
+			<div class="slide-container">
+				<div class="slide">
+					<img src="images/slides/coffee1.jpg" title="best part of waking up" alt="delicious coffee">
+				</div>
+				<div class="slide">
+					<img src="images/slides/coffee2.jpg" title="sharing is caring" alt="delicious coffee">
+				</div>
+				<div class="slide">
+					<img src="images/slides/coffee3.jpg" title="coffee is love" alt="delicious coffee">
+				</div>
+				<div class="slide">
+					<img src="images/slides/coffee4.jpg" title="you snooze you lose" alt="delicious coffee">
+				</div>
+			</div><!-- end slide container -->
+		</div><!-- end inner container -->
+	</div><!-- end outer container -->
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript">
+
+	var slideCount = 0;//count the number of slides
+	var currentSlide = 1;  //keep track of current slides
+	var slidebox = $('.slide-container'); //the container of our slides
+
+	console.log($('.slide'));
+
+	 $('.slide').each( function(i) {
+	 		if( i != 0 ){
+	 			//all the slides that are not at index 0
+	 			$(this).css({left:slidebox.width()});		
+	 		}else{
+	 			$(this).addClass('current');
+	 		}
+
+	 		$(this).attr('id', i+1);
+	 		slideCount++; //++automatically increments by 1
+
+	 }) //end set up of slides 
+
+
+	function nextSlide(){
+
+		var incomingSlide = currentSlide + 1;
+
+		if(incomingSlide > slideCount){
+			//if incomingSlide is 5 and slideCount is 4, this renders as true so it does the code and resets the value of the incoming slide to the first slide
+			incomingSlide = 1;
+		}
+
+		$('#'+currentSlide).removeClass('current').animate({left: -slidebox.width()}, 300, function(){
+			$(this).css({left: slidebox.width()});
+		});
+		$('#'+incomingSlide).addClass('current').animate({left:0}, 300, function(){
+			setTimeout(nextSlide, 2500);			
+		});
+
+		currentSlide = incomingSlide;
+
+	}
+
+//listens for the resize event and adjusts the slider
+
+$(window).resize( adjustSlider ) //reminder: adjustSlider() runs immediately, adjustSlider no parenthis runs when the event is called
+
+function adjustSlider(){
+	var sBoxW = slidebox.width(); //gets current witdh of our slidebox
+	$('.slide:not(".current")').css({left:sBoxW});
+}
+
+
+
+//setTimeout runs only once.
+setTimeout(nextSlide, 2500);
+
+</script>
+</body>
+</html>
