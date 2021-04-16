@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Dragon Flight</title>
+	<style type="text/css">
+			body{
+				font-family: Verdana, Arial, Sans;
+				font-size: 16px; /* forces base font to be what I want, not what the user wants */
+			}
+
+			.dragon{
+				position: absolute;
+				top: 100px;
+				left: 100px;
+				width: 200px; 
+				height: 144px;
+				/*background-color: limegreen;*/
+				background-image: url('images/dragon2.png');
+				background-position:  0px 0px; 
+			}
+
+			.stage{
+				position: absolute;
+				top: 30px;
+				left: 10px;
+				right: 10px;
+				bottom: 10px;
+				background-color: #59744B;
+				border: 1px solid black;
+				background-image: url('images/fullbackground.jpg');
+				background-position: 0px 0px;
+				background-repeat: repeat-x;
+				overflow: hidden;
+			}
+
+			.flame{
+				width: 10px;
+				height: 4px;
+				background-color: red;
+				position: absolute;
+				top: 300px;
+				left: 300px;
+			}
+
+			.enemy{
+				width: 20px;
+				height: 20px;
+				position: absolute;
+				border: 1px solid black;
+				background-color: grey;
+			}
+
+			.enemy.blue{
+				background-color: blue;
+			}
+
+			.enemy.red{
+				background-color: red;
+			}
+
+	</style>
+</head>
+<body>
+	<div class="stage">
+		<div class="dragon"></div>
+	</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<!-- jquery plugins go here -->
+<script type="text/javascript">
+		const dragon = $('.dragon'), //dragon is always the dragon
+			  stage = $('.stage');
+
+		var gameRunning = false, //stores if our game is running, this will be important later
+		    speed = 6,
+		    score = 0;
+
+//this variable is a Object Literal, its format is JSON
+//property:value, property:value, property:value,....
+//this will store the direction the user indicates they want the dragon to move. 
+		let dir = {
+					up:false,
+					down:false,
+					left:false,
+					right:false
+					}   	  	
+
+	$(document).keydown( function(e){
+			//e stands for event, allows us to get the event object properties
+			console.log(e.which); //tells us which key got sent down to the keyboard.
+			//arrow keys: up:38, down: 40, left: 37, right: 39
+			//aswd keys: w: 87, s:83, a:65, d:68
+
+			if(e.which == 38 || e.which == 87){
+				//either are true, we know the user wants to go up
+				dir.up = true;
+			}
+
+			if(e.which == 40 || e.which == 83){
+				//either are true, we know the user wants to go down
+				dir.down = true;
+			}
+
+			if(e.which == 37 || e.which == 65){
+				//either are true, we know the user wants to go left
+				dir.left = true;
+			}
+
+			if(e.which == 39 || e.which == 68){
+				//either are true, we know the user wants to go right
+				dir.right = true;
+			}
+
+			//shift button will go faster
+			if(e.which == 16){
+				speed = 10;
+			}
+
+			//spacebar to shoot flame
+			if(e.which == 32){
+				//console.log('fire, fire, fiiiiiiiirrrrre!');
+				shootFlame();
+			}
+
+
+		//	console.log('keydown', dir)
+
+	}) //end keydown
+
+
+	$(document).keyup( function(e){
+			//e stands for event, allows us to get the event object properties
+			//console.log(e.which); //tells us which key got released
+			//arrow keys: up:38, down: 40, left: 37, right: 39
+			//aswd keys: w: 87, s:83, a:65, d:68
+
+			if(e.which == 38 || e.which == 87){
+				//either are true, we know the user wants to no longer go up
+				dir.up = false;
+			}
+
+			if(e.which == 40 || e.which == 83){
+				//either are true, we know the user wants to no longer go down
+				dir.down = false;
+			}
+
+			if(e.which == 37 || e.which == 65){
+				//either are true, we know the user wants to no longer go left
+				dir.left = false;
+			}
+
+			if(e.which == 39 || e.which == 68){
+				//either are true, we know the user wants to no longer go right
+				dir.right = false;
+			}
+//			console.log('keyup', dir)
+			if(e.which == 16){
+				speed = 6;
+			}
+
+	}) //end keyup
+
+
+//gameLoop is the main programming for our game and will run each animation frame
+
+	function gameLoop(){
+		let newTop = 0,
+			newLeft = 0; //resets these values every time this function is run.
+
+			if(dir.up == true){
+				//if(dir.up) same thing -
+				newTop -= speed; 
+			}
+
+			if(dir.down == true){
+				//if(dir.up) same thing -
+				newTop += speed; 
+			}
+
+			if(dir.left){
+				//dir.left is true, therefore the conditional renders as true
+				newLeft -= speed;
+
+			}
+
+			if(dir.right){
+				//dir.right is true, therefore the conditional renders as true
+				newLeft += speed;
+			}
+
+//get the current position of the dragon:
+			let dTop = dragon.position().top;
+			let dLeft = dragon.position().left;
+
+//dragon height and width
+			let dHeight = 50;
+			let dWidth =  50;  
+			// dragon.width(); gets the width value dynamically
+			//use static values like dHeight when this value won't change
+			//use dynamic values when they might change - ex: mario eats the mushroom			
+
+//our stage is dynamic, we don't know what its height or width is at any given moment, so we need to check
+			//stage boundaries:
+			let sHeight = stage.height();
+			let sWidth = stage.width(); 
+
+			if(dTop + newTop < 0){
+				newTop = 0;
+				newTop-= dTop;
+			}
+
+			if(dLeft+newLeft < 0 ){
+				newLeft = 0;
+				newLeft -= dLeft;
+			}
+
+			if(dLeft+newLeft+dWidth > sWidth){
+				newLeft = 0;
+				newLeft += (sWidth-dWidth-dLeft );
+			}
+
+			if(dTop+dHeight+newTop > sHeight){
+				newTop = 0;
+				newTop += (sHeight-dHeight-dTop );
+			}
+			//console.log(newTop, newLeft);
+			
+			dragon.css({top:'+='+newTop, left:'+='+newLeft});
+
+			//call rectHit to determine if our flame has hit an enemy
+			$('.flame').each( function(){
+				//many to many comparison
+				let flame = $(this); //'this' is the flame the each function is handling at that moment
+				$('.enemy').each( function(){
+					let enemy = $(this); //the enemy we are comparing the flame against
+					var value = 0;
+					if(recthit(flame, enemy)){
+						flame.remove();
+						enemy.remove();
+						if(enemy.hasClass('blue')){
+							value = 3;
+						}else if(enemy.hasClass('red')){
+							value = 2;
+						}else{
+							value = 1;
+						}
+
+						score += value;
+						dragon.text(score);
+
+					}
+
+
+
+				})
+
+
+
+			})
+
+
+
+	//console.log('gameLoop');
+	//setTimeout(gameLoop, 1000/30); //runs once.
+	window.requestAnimationFrame(gameLoop);
+	} //end gameLoop()
+
+	//setInterval(gameLoop, 1000/30); //runs every 30FPS
+	//setTimeout(gameLoop, 1000/30); //runs once.
+	//window.requestAnimationFrame(gameLoop); //calls the next frame to call gameLoop to run
+	gameLoop();
+
+	function shootFlame(){
+		let flame = $('<div>').addClass('flame'),
+		    dTop = dragon.position().top,
+		    dLeft = dragon.position().left,
+		    fTop = dTop+23, //puts flame in the middle of our 50px high dragon
+		    fLeft = dLeft+50; //puts flame to the right of our 50px wide dragon
+
+		    flame.css({top:fTop, left: fLeft}).appendTo(stage); 
+		    //positioning the flame relative to the dragon / appending the flame to the stage
+
+		    let endStage = stage.width()+100;
+
+		    flame.animate({left: endStage}, 1000, function(){
+		    	$(this).remove();
+		    })
+
+	}//end shootFlame
+
+
+//setInterval to create enemies
+let	createEnemyInt = setInterval(createEnemy, 1000);
+
+	function createEnemy(){
+		let enemy = $('<div>').addClass('enemy');
+		let rando = Math.random();
+		console.log(rando);
+		if( rando > .66666666 ){
+			enemy.addClass('blue');
+		}else if(rando > .3333333){
+			enemy.addClass('red');
+		}
+		//leave it
+
+		//position enemy on stage:
+		let eLeft = stage.width() + 100; //starts enemy 100px off of stage
+		let eTop = parseInt(Math.random() * (stage.height()-20) )
+		//console.log(eTop);
+		enemy.css({top:eTop, left:eLeft});
+		stage.append(enemy);
+		enemy.animate({left: -100}, 2500, 'linear', function(){
+			$(this).remove(); //removes enemy when it is done animating
+		})
+
+	}
+
+function recthit(rectone, recttwo){
+
+    var r1 = $(rectone);
+    var r2 = $(recttwo);
+    
+    var r1x = r1.offset().left;
+    var r1w = r1.width();
+    var r1y = r1.offset().top;
+    var r1h = r1.height();
+    
+    var r2x = r2.offset().left;
+    var r2w = r2.width();
+    var r2y = r2.offset().top;
+    var r2h = r2.height();
+    
+    if( r1y+r1h < r2y ||
+        r1y > r2y+r2h ||
+        r1x > r2x+r2w ||
+        r1x+r1w < r2x ){
+        return false;
+    }else{
+        return true;   
+    }
+    
+}//end function 
+
+
+
+
+
+</script>
+</body>
+</html>

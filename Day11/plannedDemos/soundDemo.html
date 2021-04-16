@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+<style type="text/css">
+	body{
+		font-family: Verdana,sans-serif;
+	}
+
+</style>
+
+</head>
+<body>
+<div class="play">Play Sound</div>
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript">
+	var woosh = new Audio('sounds/short-fireball-woosh.mp3');
+	var soundtrack = new Audio('sounds/soundtrack.mp3');
+	soundtrack.loop = true;
+//	soundtrack.play();
+
+var isPlaying = false;
+
+function playSoundTrack(){
+	
+if(!isPlaying){
+		isPlaying = true;
+		soundtrack.play();
+	}else{
+		isPlaying = false;
+		soundtrack.pause();
+	}
+}
+
+$(document).on('click keydown', function(){
+	playSoundTrack();
+})
+
+
+
+
+$('.play').click( function(){
+	//woosh.play(); //this only runs again after the sound is done playing
+	playSound(woosh, 0.1);
+	
+})
+
+function playSound(track, vol = 1){
+//1 is full volume
+console.log(vol);
+	var tempSound = track.cloneNode(); //clone node duplicates any object including HTML objects
+		tempSound.volume = vol
+		tempSound.play(); //there are up to 32 audio channels that can be played
+}
+
+
+
+</script>
+</body>
+</html>

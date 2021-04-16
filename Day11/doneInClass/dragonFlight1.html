@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Animation Frame Rate Example</title>
+	<style type="text/css">
+		body{
+				font-family: Verdana;
+				font-size: 18px;
+				margin: 0 auto;
+			}
+
+			.dragon{
+				position: absolute;
+				top: 100px;
+				left: 100px;
+				width: 50px;
+				height: 50px;
+				background: limegreen;
+			}
+
+
+			.stage{
+				position: absolute;
+				top: 30px;
+				left: 10px;
+				right: 10px;
+				bottom: 10px;
+				background: #add;
+				border: 1px solid black;
+				overflow: hidden;
+			}
+
+			.flame{
+				width: 10px;
+				height: 4px;
+				background: red;
+				position: absolute;
+				top: 300px; 
+				left: 300px;
+			}
+
+			.enemy{
+				width: 20px;
+				height: 20px;
+				position: absolute;
+				border: 1px solid black;
+			}
+
+			.enemy.blue{
+				background:blue; 
+			}
+
+			.enemy.red{
+				background:red; 
+			}
+			.enemy.green{
+				background:green; 
+			}
+			.enemy.purple{
+				background:purple; 
+			}
+
+			.enemy.pink{
+				background:pink; 
+			}
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="stage">	
+		<div class="dragon"></div>
+<!-- 	<div class="flame"></div>
+		<div class="enemy blue"></div> -->
+	</div>
+
+
+<!-- best practice put scripts at the bottom -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<!-- any plugins/extensions on jQuery go here-->
+
+<script type="text/javascript">
+	'use strict';
+	//const variables
+	const dragon = $('.dragon'),
+		  stage = $('.stage'),
+		  dir = { 
+			  		up:false,
+			  		down:false,
+			  		left:false,
+			  		right:false
+		  		}; //this is an object literal. Represents the direction that the user wants to move the div based off of keyboard indications (arrows for example) since we are not redeclaring dir,but manipulating its properties we can use const
+
+//let variables
+	let gameRunning = false,
+		speed = 6; //number of px our div will move. This may change!
+
+		$(document).keydown( function(e) {
+			//e captures the event object information, which tells me which key was sent down
+
+			//arrows: up:38, down:40, left:37, right:39
+			//aswd: w:87, s:83, a: 65, d:68
+
+			if(e.which == 38 || e.which == 87 ){
+				dir.up = true;
+			}
+
+			if(e.which == 40 || e.which == 83 ){
+				dir.down = true;
+			}
+
+			if(e.which == 37 || e.which == 65){
+				dir.left = true;
+			}			
+
+			if(e.which == 39 || e.which == 68){
+				dir.right = true;
+			}			
+
+		//hit shift key to go a little faster
+			if(e.which == 16){
+				speed = 10; 
+			}
+
+			//TODO: shootflame spacebar
+
+			if(e.which == 32){
+				//32 is spacebar
+				console.log('Woooooosh!');
+				shootFlame();
+			}
+
+					console.log('keydown', e.which);
+//			console.log(dir);
+		}) //end keydown
+
+		$(document).keyup( function(e) {
+			//e captures the event object information, which tells me which key was released
+
+			//arrows: up:38, down:40, left:37, right:39
+			//aswd: w:87, s:83, a: 65, d:68
+
+			if(e.which == 38 || e.which == 87 ){
+				dir.up = false;
+			}
+
+			if(e.which == 40 || e.which == 83 ){
+				dir.down = false;
+			}
+
+			if(e.which == 37 || e.which == 65){
+				dir.left = false;
+			}			
+
+			if(e.which == 39 || e.which == 68){
+				dir.right = false;
+			}			
+			
+		//hit shift key to go a little faster
+			if(e.which == 16){
+				speed = 6; 
+			}
+
+			console.log('keyup', dir);
+		})
+
+		function gameLoop(){
+			let newTop = 0,
+			    newLeft = 0;
+			 //sets the values of hte top and left to 0, but is used to store the value of our dragon's top and left position
+			 
+			 if(dir.up == true){
+			 	//or dir.up
+			 	newTop -= speed;
+			 }   
+
+			 if(dir.down){
+			 	//or dir.down == true
+			 	newTop += speed;
+			 }   
+
+			 if(dir.left == true){
+			 	newLeft -= speed;
+			 }
+
+			 if(dir.right){
+			 	console.log('true?')
+			 	console.log(dir);
+			 	newLeft += speed;
+			 }
+
+			//dragon's current position:
+		 	let dTop = dragon.position().top;
+		 	let dLeft = dragon.position().left;
+
+			//dragon's height and width
+			let dHeight = 50;
+			let dWidth = 50; //dynamic value dragon.width() 	 	
+	
+			//check against stage dynamic boundaries
+			let sHeight = stage.height(); //gets current value of stage's height
+			let sWidth = stage.width();  //gets current value of stage's width
+
+			if(dTop + newTop < 0){
+				newTop = 0;
+				newTop -= dTop;
+			}
+
+			if(dLeft+newLeft <0){
+				newLeft = 0;
+				newLeft -= dLeft;
+			}
+			//check against right boundary
+			if(dLeft+newLeft+dWidth > sWidth ){
+				newLeft = 0;
+				newLeft+= (sWidth-dWidth-dLeft);
+			}
+			//check against bottom boundary
+			if(dTop+newTop+dHeight > sHeight ){
+				newTop = 0;
+				newTop += (sHeight-dHeight-dTop);
+
+			}
+
+
+			dragon.css({top: '+='+newTop, left: '+='+newLeft})
+
+		requestAnimationFrame(gameLoop);
+		} //end gameLoop()
+
+		gameLoop();
+
+function shootFlame(){
+//when user presses spacebar, shoot flame from dragon
+	let flame = $('<div>').addClass('flame'),
+	    dTop = dragon.position().top,
+	    dLeft = dragon.position().left,
+	    fTop = dTop+23, //
+	    fLeft = dLeft+50; //the width of our dragon is 50
+
+	flame.css({top: fTop, left:fLeft})
+	flame.appendTo(stage)
+
+	flame.animate({left: stage.width()+100}, 1000, function(){
+		$(this).remove(); //garbage collection this removes the element when we are done with it
+	})
+
+}
+
+
+
+
+</script>
+</body>
+</html>
