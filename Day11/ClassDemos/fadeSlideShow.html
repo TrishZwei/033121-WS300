@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+	<meta charset="utf-8">
+	<title>Fade Slide Show</title>
+<style type="text/css">
+	body{
+		font-family: Verdana,sans-serif;
+	}
+
+	.outer-container{
+		position: relative;
+		max-width:  600px;
+		margin: 0 auto;
+		border: 1px solid black;
+	}
+
+	.inner-container{
+		position: relative;
+		overflow: hidden;
+	}
+
+	.slide-container{
+		width: 100%;
+		height: 0;
+		max-width:600px;
+		max-height: 400px;
+		padding-bottom: 66.666666666%;
+		/* 	padding bottom is relative to the width
+			600/400 = 1.5 aspect-ratio
+			100/1.5 = 66.66... %
+		*/
+		margin: 0 auto;
+		position: relative;
+		overflow: hidden;
+		line-height: 1rem;
+	}
+
+	.slide-container div.slide{
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+
+	.slide-container div.slide img{
+		width: 100%;
+		max-width: 100%;
+		padding: 0px;
+	}
+
+/* button & pager styles go here for later slider */
+
+
+</style>
+
+</head>
+<body>
+	<h1>Fade Slider</h1>
+	<div class="outer-container">
+		<div class="inner-container">
+			<div class="slide-container">
+				<div class="slide">
+					<img src="images/slides/coffee1.jpg" title="best part of waking up" alt="delicious coffee">
+				</div>
+				<div class="slide">
+					<img src="images/slides/coffee2.jpg" title="sharing is caring" alt="delicious coffee">
+				</div>
+				<div class="slide">
+					<img src="images/slides/coffee3.jpg" title="coffee is love" alt="delicious coffee">
+				</div>
+				<div class="slide">
+					<img src="images/slides/coffee4.jpg" title="you snooze you lose" alt="delicious coffee">
+				</div>
+			</div><!-- end slide container -->
+		</div><!-- end inner container -->
+	</div><!-- end outer container -->
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript">
+
+function fadeSlide(){
+	//target the last image of the slide-container and fade it out
+	$('.slide-container div:last-child').fadeOut(1000, function(){
+		//callback function to run after animation is complete
+		$(this).prependTo('.slide-container').show();
+		setTimeout(fadeSlide, 2500);
+	})
+}
+
+setTimeout(fadeSlide, 2500);
+
+</script>
+</body>
+</html>
