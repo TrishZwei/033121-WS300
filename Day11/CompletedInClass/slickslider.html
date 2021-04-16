@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Slick Slider</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+		.slick{
+			width: 350px;
+			height: 250px;
+			margin: 1em auto;
+		}	
+
+		.slick img{
+			width: 100%;
+
+		}
+	</style>
+</head>
+<body>
+<!-- make all these the same size for ease of use -->	
+<div class="slick">
+  <div><img src="images/bunny.jpg"></div>
+  <div><img src="images/kitten.jpg"></div>
+  <div><img src="images/hamster.jpg"></div>  
+  <div><img src="images/puppy.jpg"></div>
+</div>
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jq migrate allows us to update jQ 1 scripts to be used with jq 3 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.js" integrity="sha512-Vl3LfTwTl2UYaupOww2SD1ng4ZSOrLYc1Pnag6KCipvEy9Be4KSmeFH8KnX6FcURxeZufGUKxOO77EsfzT/4Zg==" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+
+	$('.slick').slick(); //default behavior
+
+	
+</script>
+</body>
+</html>
