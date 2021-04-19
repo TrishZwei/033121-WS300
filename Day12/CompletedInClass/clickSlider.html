@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale:1.0">
+	<title>Fade Slideshow</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+
+		.outer-container{
+			position: relative;
+			max-width: 600px;
+			margin: 0 auto;
+			border: 1px solid black;
+		}
+
+		.inner-container{
+			position: relative;
+			overflow: hidden;
+		}
+
+		.slide-container{
+			width: 100%;
+			height: 0;
+			max-width: 600px;
+			max-height: 400px;
+			padding-bottom: 66.66666666%;
+			/*
+			padding-bottom is relative to the width
+			600/400 = 1.5 aspect ratio 
+			100/1.5 = 66.666 %
+			new CSS property - aspect-ratio: 3 / 2;
+			caniuse says 66% adoption rate so not ready for prime time
+			*/
+			margin: 0 auto;
+			position: relative;
+			overflow: hidden;
+			line-height: 1rem;
+			aspect-ratio: 3 / 2;
+		}
+
+		.slide-container div.slide{
+			width: 100%;
+			padding: 0;
+			margin: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.slide-container div.slide img{
+			width: 100%;
+			max-width: 100%;
+			padding: 0;
+		}
+		/*styles for arrows/buttons*/
+		.mouse-click{
+			cursor: pointer;
+		}
+
+		.slide-arrow-container{
+			position: relative;
+			width: 100%;
+			height: 32px; 
+		}
+
+		.slide-arrow-container .button{
+			position: absolute;
+			top: 0;;
+			outline: 0;
+			width: 32px;
+			height: 32px;
+			text-indent: -9999px;
+			z-index: 100;
+		}
+
+		.slide-arrow-container .prev.button{
+			position: absolute;
+			left: 10px;
+			background: url(images/controls.png) no-repeat 0 -32px;
+
+		}
+
+		.slide-arrow-container .next.button{
+			position: absolute;
+			right:10px;
+			background: url(images/controls.png) no-repeat -43px -32px;
+
+		}		
+
+
+
+
+	</style>
+</head>
+<body>
+	<h1>Click Slider</h1>
+	<div class="outer-container">
+		<div class="inner-container">
+			<div class="slide-container">
+				<div class="slide">
+					<img src="images/slides/coffee1.jpg" title="Best part of waking up" alt="delicious coffee">
+				</div>
+				<div class="slide">
+					<img src="images/slides/coffee2.jpg" title="Sharing is caring" alt="delicious coffee">
+				</div>
+				<div class="slide">
+					<img src="images/slides/coffee3.jpg" title="Coffee is Love" alt="delicious coffee">
+				</div>
+				<div class="slide">
+					<img src="images/slides/coffee4.jpg" title="You snooze ou loose" alt="delicious coffee">
+				</div>				
+			</div><!-- end slide container -->
+		</div><!-- end inner container -->
+		<div class="slide-arrow-container">
+			<div class="prev button mouse-click">Prev</div>
+			<div class="next button mouse-click">Next</div>
+		</div>	
+	</div><!-- end outer container -->
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Quiz 2</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}	
+	</style>
+</head>
+<body>
+	<main>
+		<article>
+			<h2>Article Title</h2>
+			<p class="one">Paragraph 1</p>
+			<p class="two">Paragraph 2</p>
+			<p class="three">Paragraph 3</p>
+			<p class="four">Paragraph 4</p>			
+		</article>
+		<p class="five">Paragraph 5</p>
+	</main>
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	/////////////////////selectors////////////////////////
+	$('.two')
+	$('main .two')
+	$('article .two')
+	$('p.two')
+	$('p:nth-child(2)')
+	$('article p:nth-child(2)')
+	$('main article p:nth-child(2)')
+		
+	/////////////////////////////////////////
+	$('.two').css({'font-size':'20px', 'color': 'red'});
+	$('.two').animate({'font-size':'20px', 'font-weight':'bold'});
+	$('.two').css({'font-size':'20px'}).text('change my value');
+	$('.two').css({'font-size':'20px'}).html('<button>Click Me</button>');		
+</script>
+</body>
+</html>
