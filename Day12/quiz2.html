@@ -27,19 +27,27 @@
 <!-- custom script that accesses jQ and any plugins -->
 <script type="text/javascript">
 	/////////////////////selectors////////////////////////
-	$('.two')
-	$('main .two')
-	$('article .two')
-	$('p.two')
-	$('p:nth-child(2)')
-	$('article p:nth-child(2)')
-	$('main article p:nth-child(2)')
+	console.log($('.two'))
+	console.log($('main .two'))
+	console.log($('article .two'))
+	console.log($('p.two'))
+
+	//not sure why it has to be 3 for nth child.... all the documentation says 2 but look in the console. we have the right element.
+	//a ha... the h2 is considered a child of the article. Even though we are specifying the p tag.
+	// https://css-tricks.com/the-difference-between-nth-child-and-nth-of-type/
+	console.log($('p:nth-child(3)'))
+	console.log($('article p:nth-child(3)'))
+	console.log($('main article p:nth-child(3)'))
+	console.log($('article p:nth-child(3)'))
+
+	//nth-of-type(2) works since it is the second paragraph on the page.
+	console.log($('p:nth-of-type(2)'))
 		
 	/////////////////////////////////////////
 	$('.two').css({'font-size':'20px', 'color': 'red'});
-	$('.two').animate({'font-size':'20px', 'font-weight':'bold'});
+	$('.two').animate({'font-size':'20px', 'height':'3em'});
 	$('.two').css({'font-size':'20px'}).text('change my value');
-	$('.two').css({'font-size':'20px'}).html('<button>Click Me</button>');		
+	$('.two').css({'font-size':'20px'}).html('<button>Click Me</button> And some other text... just to show I am red.');		
 </script>
 </body>
 </html>

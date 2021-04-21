@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tab Images</title>
+	<style type="text/css">
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+ /* float: left;*/
+  display: inline-block;
+  width: 20%;
+  padding: 10px;
+}
+
+.center{
+	text-align: center;
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.8; 
+  cursor: pointer;
+  width: 100%; 
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The expanding image container */
+.container {
+  position: relative;
+  max-width: 900px;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+/* Expanding image text */
+#img-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 20px;
+}
+
+/* ghost css to help me find where the padding is going astray...*/
+*{
+/*	background-color: black;
+	color: green;	
+	border: 1px solid red;
+*/
+}
+
+
+	</style>
+</head>
+<body>
+<!-- 
+inspired by this page: 
+code modified to work for us
+--> 	
+<h1>Image Gallery - Lazy Loading</h1>
+<div class="row center">
+  <div class="column">
+  	<!-- when you click on one of these, it inserts itself into the larger image -->
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1051">
+  </div>
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1052">  
+  </div>
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1053">
+  </div>
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1054">
+  </div>
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1055">
+  </div>
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1056">
+  </div>
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1057">
+  </div>
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1058">
+  </div>
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1059">
+  </div>
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1060">
+  </div>  
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1061">
+  </div>
+  <div class="column">
+    <img loading="lazy" src="https://picsum.photos/350/350?image=1062">
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	//no JS needed.... should use a polyfill! 
+  //global usage is 73.48%
+  let supportsLazyLoad = ('loading' in document.createElement('img'));
+  //above is code to determine if loading is an available attribute.
+  console.log(supportsLazyLoad);
+
+
+</script>
+</body>
+</html>

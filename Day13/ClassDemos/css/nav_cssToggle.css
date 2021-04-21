@@ -1,0 +1,446 @@
+/* 
+#B1824C middle brown
+#4E2D26 dark brown
+*/
+
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web:700);
+
+/* apply a natural box layout model to all elements */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/*Global styles -----------------------------------------------------------------------------------------------------------*/
+
+/*micro-clearfix by Nicolas Gallagher http://nicolasgallagher.com/micro-clearfix-hack/*/
+/* For modern browsers */
+.cf:before, .cf:after {
+	content:"";
+	display:table;
+}
+
+.cf:after {
+	clear:both;
+}
+
+.cf {
+	zoom:1;
+}
+
+
+/* 
+== Base background and fonts
+*/
+html {
+	background: #4E2D26;
+	border-top:solid 8px #300;
+}
+
+body {
+	font: 100% "Droid Sans", Myriad, "Myriad Pro", Tahoma,  Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+	background: #efefef;
+	color: #000;
+	font-weight:normal;
+	font-style:normal;
+	width: 98%;
+	margin: 0 auto;
+	min-width: 320px;
+}
+
+/*
+== Basic Links
+*/
+article a {
+	text-decoration: none;
+	color: #667F6A;
+	border-bottom: 1px dotted #667F6A;
+}
+
+
+/*header styles*/
+header {
+	width: 100%;
+	padding-top: 1px;
+	overflow: hidden;
+	background-color:#4E2D26;
+	height:75px;
+
+}
+
+header h1{
+	font-family:"Titillium Web", sans-serif;
+	font-size:3em;
+	color:#B1824C;
+	margin:0 0 0.5em 0;
+	text-align:center;
+}
+
+
+main h3{
+	padding-left: 1em;
+	margin:0;
+	padding:0.25em 0 0.25em 0.5em;;
+	color:#FFF;
+	text-transform: uppercase;
+	font-weight:normal;
+	background-color:#B1824C;
+	border-bottom:#4E2D26 3px solid;	
+}
+
+main h3 a{
+	color:white;
+	text-decoration:none;
+	
+}
+main h3 a:hover{
+	color:#4E2D26;
+}
+
+header h1{
+	padding-bottom:0;
+}
+h3{
+	margin:0;
+}
+/*nav styles*/
+/* basciStyles*/
+nav ul {
+	list-style: none;
+	padding-left:0;
+}
+#nav a {
+	text-transform: uppercase;
+	text-decoration:none;
+	display: block;
+	color: white;
+	border: none;
+	font-size: 1.2em;
+	text-align: left;
+	color: white;	
+	display: block;
+	margin-bottom: 1px;
+	padding-left: 1em;
+	line-height: 2em;
+	text-transform: uppercase;
+	cursor: pointer;
+	background-color:#7E5D39;
+	padding-bottom:0.02em;	
+}
+
+li.toTop {
+	font-size:0.65em;
+	font-style:italic;
+	text-align:center;
+}
+
+li.toTop a{
+	padding:0.65em 0;
+}
+
+#jump {
+     background: #B1824C;
+	 position:absolute;
+	 top:0;
+	 left:0.5em;
+     cursor: pointer;
+     display: block;
+     padding: 0.75em 0 0 0.5em;
+     height: 52px;
+     width: 83px;
+   	 position: absolute;
+     right: 0;
+     top: 0;
+	 color:white;
+	 z-index:1000;
+	 text-decoration:none;
+    }
+	
+/*reposition the nav to the top of the page*/
+#nav {
+      margin: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+     z-index: 500;
+	  padding-top:53px;
+	  
+	  	  }
+	  
+#nav a {
+      border-bottom-width: 0;
+      overflow: hidden;
+      height: 0;
+      line-height: 0;
+      padding: 0 1em;
+	  display:none;
+	  position:relative;
+	 z-index:1;
+    }
+#nav:target{
+	/*z-index:1000;*/
+	background:#4E2D26;
+	margin-left:0.55em;
+}
+	
+#nav:target a {
+	display:block;
+      border-bottom-width: 1px;
+      line-height: 3em;
+      height: 3em;
+	  background-color:#B1824C;	  
+    }
+	
+#nav:target a {
+	/*not working for some reason*/
+         -moz-transition: height .25s, line-height .25s;
+          -ms-transition: height .25s, line-height .25s;
+           -o-transition: height .25s, line-height .25s;
+      -webkit-transition: height .25s, line-height .25s;
+              transition: height .25s, line-height .25s;
+    }
+	
+#nav:target a:hover{
+		background-color:#4E2D26;
+	}
+
+
+/*misson styles*/
+
+.mission {
+	margin: 0 auto;
+	background: url(../images/beachsm.jpg) center 0 no-repeat;
+	min-height:340px;
+	padding-top:4em;
+}
+
+.mission h1 {
+	font-weight: bold;
+	font-size: 1.5em;
+	text-align: center;
+	margin-bottom: .5em;
+	text-transform: uppercase;
+	color:white;
+}
+
+/*article styles*/
+article{
+	width:90%;
+	margin:0 auto;
+	padding-left:1em;
+	
+	font-family:"Droid Sans", Myriad, "Myriad Pro", Tahoma,  Arial, Helvetica, sans-serif;
+	color:#666;
+}
+
+article section {
+	margin-bottom: 1em;
+	overflow: hidden;
+	padding-bottom: 20px;
+}
+
+article h2 {
+	font-size: 2.5em;
+	margin-bottom: 0;
+	color:#4E2D26;
+	font-family:"Titillium Web", sans-serif;
+	
+}
+.subhead{
+	font-style:italic;
+	font-size:1.2em;
+	margin-top:0;
+}
+
+
+/*form styles*/
+label {
+	display:block;
+	font-size: 1.2em;
+	margin: .8em 0 0;	
+	text-transform:uppercase;
+}
+
+input[type="submit"] {
+	display:block;
+	margin: 1em 0;
+}
+
+
+/*footer styles*/
+#pageFooter {
+	clear:both;
+	overflow:hidden;
+	padding-bottom: 2em;
+	background: #B1824C;
+	padding-top: 1.5em;
+}
+
+#pageFooter form {
+	width: 90%;
+	margin: 0 auto 1em;
+}
+#pageFooter input[type="search"] {
+	width: 200px;
+}
+
+
+
+#pageFooter p {
+	clear:both;
+	width: 100%;
+	text-align:center;
+	font-size:0.75em;
+	font-style:italic;
+	}
+
+/*tablet styles*/
+@media only screen and (min-width:480px) {
+	body {
+		width: 90%;
+		margin: 0 auto;
+	}
+	/*header styles*/
+	header{
+		height:135px;
+	}
+	header h1{
+		text-align:left;
+	}
+	main h3{
+	display:none;
+	
+}
+	
+
+/*nav styles*/
+	#jump,
+	#nav li.toTop{
+		display:none;
+	}
+	#nav{
+		background-color:#B1824C;
+		padding-top:1em;
+		padding-bottom:1em;
+		
+	}
+	#nav a{
+		display:inline;
+	}
+		#nav li {
+		float: left;
+		/*width: auto;*/
+	}
+	#mainNav {
+		width:90%;
+		padding: 0;
+		position:absolute;
+		top:90px;
+		border-bottom:#4E2D26 3px solid;
+	}
+#nav a {
+		font-size: 1em;
+		text-align: center;
+		cursor: pointer;
+		padding:.5em 1em;		
+		background-color:#B1824C;	
+	
+	}
+	
+	/*mission styles*/
+	.mission {
+		padding-left: 3.9%;
+		overflow: hidden;
+		background: url(../images/beachMd.jpg) no-repeat;
+		min-height: 478px;
+		padding-top:0;
+	}
+	
+
+	.mission h1 {
+		font-weight: bold;
+		font-size:2em ;
+		letter-spacing:.1em;
+		text-align: center;
+		margin-top: 1em;
+		text-shadow: 0px -1px 0px #29211c;
+		filter: dropshadow(color=#29211c, offx=0, offy=-1);
+		background:rgba(78,45,38,0.4);
+	}
+
+
+	/* article styles */
+	
+	article section {
+		padding-bottom: 1em;
+	}
+
+	
+	article h2 {
+		font-size: 2.4em;
+		margin-bottom: 0;	
+	}
+
+	article p {
+		font-size: 1em;
+		margin: .4em 0;
+		
+	}
+	
+	
+}
+/*desktop styles*/
+@media only screen and (min-width:769px) {
+
+	body {
+		max-width: 1080px;	
+	}
+	#mainNav{
+		max-width:inherit;
+		
+	}
+	
+	#nav a {
+		font-size: 1.1em;
+		padding:.5em 1.3em 0.25 1.5em;		
+		background-color:#B1824C;
+	}
+
+
+	
+	/*mission styles*/
+	.mission {
+		height: 610px;
+		padding-left: 3.9%;
+		overflow: hidden;
+		background:url(../images/beachLrg.jpg) no-repeat;
+		position: relative;
+	}
+
+	.mission h1 {
+		font-size: 2.2em;
+		color: #fff;
+		letter-spacing:.1em;
+	}
+	
+	/* article styles */
+	
+article h2 {
+		font-size: 1.8em;
+	}
+
+	article p {
+		font-size:1em;
+		margin: .8em 0;	
+	}
+
+	
+	/*footer styles*/
+
+	#pageFooter {
+		height: 180px;
+	}
+
+	
+}
