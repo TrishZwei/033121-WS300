@@ -3,103 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale:1.0">
-	<title>Click Slideshow</title>
-	<style type="text/css">
-		body{
-			font-family: Verdana, Arial, Sans;
-			font-size: 16px;
-		}
-
-		.outer-container{
-			position: relative;
-			max-width: 600px;
-			margin: 0 auto;
-			border: 1px solid black;
-		}
-
-		.inner-container{
-			position: relative;
-			overflow: hidden;
-		}
-
-		.slide-container{
-			width: 100%;
-			height: 0;
-			max-width: 600px;
-			max-height: 400px;
-			padding-bottom: 66.66666666%;
-			/*
-			padding-bottom is relative to the width
-			600/400 = 1.5 aspect ratio 
-			100/1.5 = 66.666 %
-			new CSS property - aspect-ratio: 3 / 2;
-			caniuse says 66% adoption rate so not ready for prime time
-			*/
-			margin: 0 auto;
-			position: relative;
-			overflow: hidden;
-			line-height: 1rem;
-			aspect-ratio: 3 / 2;
-		}
-
-		.slide-container div.slide{
-			width: 100%;
-			padding: 0;
-			margin: 0;
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
-
-		.slide-container div.slide img{
-			width: 100%;
-			max-width: 100%;
-			padding: 0;
-		}
-		/*styles for arrows/buttons*/
-		.mouse-click{
-			cursor: pointer;
-		}
-
-		.slide-arrow-container{
-			position: relative;
-			width: 100%;
-			height: 32px; 
-		}
-
-		.slide-arrow-container .button{
-			position: absolute;
-			top: 0;;
-			outline: 0;
-			width: 32px;
-			height: 32px;
-			text-indent: -9999px;
-			z-index: 100;
-		}
-
-		.slide-arrow-container .prev.button{
-			position: absolute;
-			left: 10px;
-			background: url(images/controls.png) no-repeat 0 -32px;
-
-		}
-
-		.slide-arrow-container .next.button{
-			position: absolute;
-			right:10px;
-			background: url(images/controls.png) no-repeat -43px -32px;
-
-		}
-
-		.accordion p{
-			display: none;
-		}
-
-		h3{
-			border-bottom: 1px solid black;
-		}		
-
-	</style>
+	<title>Click Slideshow + Accordion</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
 	<h1>Click Slider</h1>
@@ -127,122 +32,27 @@
 	</div><!-- end outer container -->
 	<section class="accordion-container">
 		<div class="accordion">
-		<h3>Title 1</h3>
+		<h3 class="t1">Title 1</h3>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
 		</p>
 	</div>
 	<div class="accordion">
-		<h3>Title 2</h3>
+		<h3 class="t2">Title 2</h3>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
 		</p>
 	</div>
 	<div class="accordion">
-		<h3>Title 3</h3>
+		<h3 class="t3">Title 3</h3>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
 		</p>
 	</div>
 	</section>
 <!-- jQuery below other elements -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/script.js"></script>
 <!-- jQuery plugins -->
 <!-- custom script that accesses jQ and any plugins -->
 <script type="text/javascript">
-let slideCount = 0; //stores the number of slides we have
-let currentSlide = 1; //keeps track of the slide in the slide window.
- let slideContainer = $('.slide-container'); //sets slideContainer to be $('.slide-container')
-
-console.log( $('.slide') )
-
-$('.slide').each( function(index){
-
-	$(this).attr('id', index+1 )//this adds the attribute id and then sets it with the second argument
-	if(index !=0){
-		//this gets all but the 0 index item
-		$(this).css({'left':slideContainer.width()}) //gets current width of slide container
-	}else{
-		$(this).addClass('current');
-	}
-
-	slideCount++; //increments slideCount by 1
-
-}) //initial set up of slides to their proper positions.
-	
-	function nextSlide(){
-		removeClicks();
-
-	let incomingSlide = currentSlide + 1; 
-
-	if(incomingSlide > slideCount){
-		incomingSlide = 1; 
-	}
-
-	$('#'+currentSlide).removeClass('current').animate({'left':-slideContainer.width()},300, function(){
-		//callback function:
-		$(this).css({'left':slideContainer.width()})
-		addClicks();
-	});
-	$('#'+incomingSlide).addClass('current').animate({'left': 0}, 300)
-
-	currentSlide = incomingSlide;
-
-	}
-
-	function prevSlide(){
-		removeClicks();
-		let incomingSlide = currentSlide - 1;
-
-		if(incomingSlide == 0){
-			incomingSlide = slideCount; 
-			//slideCount is the .length of our slides
-		}
-
-		//animate out the current slide:
-		$('#'+currentSlide).removeClass('current').animate({'left': slideContainer.width()}, 300, function(){
-			addClicks();
-		})
-		$('#'+incomingSlide).addClass('current').css({'left': -slideContainer.width()}).animate({'left': 0}, 300)
-
-		currentSlide = incomingSlide;
-
-	}
-
-
-	function adjustSlider(){
-		let sBoxH = slideContainer.height();
-		let sBoxW = slideContainer.width();
-		$('.slide:not(".current")').css({'left':sBoxW})
-		console.log('resize')
-	}
-
-	//event listener on window:
-
-	$(window).resize( adjustSlider );
-
-	//long version: $(window).on('resize', adjustSlider)
-
-//controls when clicks are available.
-	function addClicks(){
-		$('.next').on('click', nextSlide); //no parenthesis ex: nextSlide() because the handler will run it.
-		$('.prev').on('click', prevSlide);
-	}
-
-	function removeClicks(){
-		$('.next, .prev').off();
-		//$('.prev').off();
-
-	}
-
-addClicks();
-
-	$('.accordion h3').on('click', function(){
-		console.log(this) ; //this is a keyword in JS
-		let thisTitle = $(this); 
-		thisTitle.next().slideToggle(1000);
-
-	})
-
-
-
 
 
 </script>
