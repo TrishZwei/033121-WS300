@@ -77,50 +77,104 @@ header h1{
 	font-family:"Titillium Web", sans-serif;
 	font-size:3em;
 	color:#B1824C;
-	margin:0 0 0.5em 0;
+	/*margin:0 0 0.5em 0;*/
+	width:100%;
+	margin:0;
 	text-align:center;
 }
 
-/*#mainNav h2, #mainNav #menuToggle {
-	display: none;
-}*/
+
+/*new styles*/
+	.wrap{
+		position: relative;
+		transition: all 0.5s ease-out;
+	}
+
+	.wrap.active{
+		left: 16em;
+	}
+
 
 /*nav styles*/
-#mainNav{
+a.menu-link{
+	display: block;
+	padding: 0.85em;
+	position: absolute;
+	top: 0;
+	background-color: #B1824C;
+	color: white;
+	border-top: #B1824C 1px solid;
+	text-decoration: none;
+	width: 100%;
+}
+
+/*adding plus and minus signs after menu*/
+.js a.menu-link:before{
+	content: "<";
+}
+
+.js a.menu-link.active:after{
+	content: ">";
+}
+
+.js a.menu-link.active:before{
+	content: "";
+}
+
+
+nav[role=navigation]{
+	clear:both;
+	background-color: #4E2D26;
+	overflow: hidden;
+	transition: all 0.3s ease-out;
+}
+
+#main-nav{
 	background-color:#B1824C;
 	width: 100%;
 	margin: 0;
 	overflow: hidden;
 }
-main h3{
-	
-	padding-left: 1em;
-	margin:0;
-	padding:0.25em 0 0.25em 0.5em;;
-	color:#FFF;
-	text-transform: uppercase;
-	font-weight:normal;
-	background-color:#B1824C;
-	border-bottom:#4E2D26 3px solid;	
+
+.js nav[role=navigation]#main-nav{
+	width: 16em;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: -16em;
 }
 
-main h3 a{
-	color:white;
-	text-decoration:none;
-	
-}
-main h3 a:hover{
-	color:#4E2D26;
+.js nav[role=navigation].active{
+	max-height: 30em;
 }
 
-nav ul {
+nav[role=navigation] ul{
+	margin: 0;
+	padding: 0;	
 	list-style: none;
 	padding-left:0;
 }
 
-#mainNav a, #mainNav h3 {
+nav[role=navigation] ul li{
+	background-color: #B1824C;
+}
+
+nav[role=navigation] ul li a{
+	display: block;
+	padding: .8em;
+	color: white;
+	border-bottom: 1px solid white;
+}
+
+nav[role=navigation] ul li a:hover{
+	background-color: #4E2D26;
+}
+
+
+
+
+#main-nav a, #main-nav h3 {
 	text-transform: uppercase;
-	text-decoration:none;
 	display: block;
 	color: white;
 	border: none;
@@ -136,26 +190,16 @@ nav ul {
 	background-color:#7E5D39;
 	padding-bottom:0.02em;	
 }
-#mainNav a:hover{
+#main-nav a:hover{
 		background-color:#4E2D26;
 	}
 
-#mainNav li {
+#main-nav li {
 	margin: 0;
 	float: none;
 	position: relative;
 }
-
-li.toTop {
-	font-size:0.65em;
-	font-style:italic;
-	text-align:center;
-}
-
-li.toTop a{
-	padding:0.65em 0;
-}
-
+/*do toggle styles need to be here?*/
 
 /*misson styles*/
 
@@ -196,7 +240,6 @@ article h2 {
 	margin-bottom: 0;
 	color:#4E2D26;
 	font-family:"Titillium Web", sans-serif;
-	
 }
 .subhead{
 	font-style:italic;
@@ -254,41 +297,46 @@ input[type="submit"] {
 	}
 	/*header styles*/
 	header{
-		height:135px;
+		height:100px;
 	}
 	header h1{
 		text-align:left;
 	}
-	main h3{
-	display:none;
-	
-}
-	
+
 
 /*nav styles*/
-	#mainNav {
-		width:inherit;
+	a.menu-link{
+		display: none;
+	}
+
+	.js nav[role=navigation]#main-nav{
+		max-width: none;
+		position: static;
+		width: auto;
+	}
+	#main-nav ul{
+		margin: 0;
+	}
+
+	#main-nav {
+		width: 100%;
 		padding: 0;
-		position:absolute;
-		top:80px;
+		margin-bottom:0;
 		border-bottom:#4E2D26 3px solid;	
 	}
 	
-	#mainNav li {
-		float: left;
-		width: auto;
+	#main-nav li {
+		display: inline-block;
+		margin:0 0.25em 0 0;
 	}
-		#mainNav li.toTop{
-		display:none;
-	}
-	
 
-	#mainNav a {
+	#main-nav a {
 		font-size: 1em;
 		text-align: center;
 		cursor: pointer;
-		padding:.5em 1em;		
+		padding:.75em 1em;
 		background-color:#B1824C;
+		border: 0;
 	}
 	
 	/*mission styles*/
@@ -337,24 +385,15 @@ input[type="submit"] {
 @media only screen and (min-width:769px) {
 
 	body {
-		max-width: 1080px;	
-	}
-	#mainNav{
-		max-width:inherit;
-		
+		max-width: 1080px;
 	}
 	
-	#mainNav a {
-		font-size: 1.1em;
-		padding:.5em 1.3em 0.25 1.5em;		
-		background-color:#B1824C;
-	}
 
-	#mainNav li {
-		margin-right:0;
-		
+	#main-nav a{
+		font-size: 1em;
+		text-align: center;
+		padding:  1em 2em;
 	}
-
 	
 	/*mission styles*/
 	.mission {

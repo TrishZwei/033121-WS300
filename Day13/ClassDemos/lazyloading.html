@@ -3,7 +3,10 @@
 <head>
 	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Tab Images</title>
+	<title>Lazy Loading</title>
+  <!-- 
+  This shows how lazy loading can be done natively and without JS. However a polyfill should be used since the stats on caniuse at the time this was made global usage is 73.48%. Not quite ready for prime time.
+  -->
 	<style type="text/css">
 * {
   box-sizing: border-box;
@@ -120,10 +123,16 @@ code modified to work for us
 
 <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-	//no JS needed.... should use a polyfill! 
-  //global usage is 73.48%
+	//no JS needed.... but should use a polyfill because global usage is 73.48%
+
   let supportsLazyLoad = ('loading' in document.createElement('img'));
-  //above is code to determine if loading is an available attribute.
+  /*
+  Above is code to determine if loading is an available attribute on the image. 
+  I found this code on stack overflow and in all the browsers I have available to me this renders as true. (though I am not seeing it happening. Maybe I need more images or a media query to change the configuration of the images so that they are further off the page.) 
+  
+  Check the console. It will probably be true for most modern browsers.
+  I have the following on my windows machine: chrome, firefox, edge and opera.
+  */
   console.log(supportsLazyLoad);
 
 

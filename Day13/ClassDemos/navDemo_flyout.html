@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Let's navigate: responsive navigation patterns - Flyout</title>
+<link rel="stylesheet" href="css/normalize.css">
+<link href="css/nav_flyout.css" rel="stylesheet" media="screen, projection">
+<!-- jquery! at the bottom! -->
+</head>
+
+<body>
+  <header id="pageHeader" role="banner">
+       <h1>Navigate</h1>
+  </header>
+  <div class="wrap" id="wrap">
+    <a href="#menu" class="menu-link">Menu</a>
+    <nav id="menu" role="navigation">
+        <ul>
+             <li><a href="#">Home</a></li>
+             <li><a href="#">About</a></li>
+             <li><a href="#">Products</a></li>
+             <li><a href="#">Services</a></li>
+             <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <main id="content" role="main" class="cf">
+      <div class="mission">
+        <h1>Get Me Out of Here!</h1>
+      </div>
+      <article id="latest">
+        <section >
+        <h2>Why Should We Go?</h2>
+        <p class="subhead">the importance of vacations</p>
+        <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p> It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </section>
+        <section>
+          <h2>Can We afford it?</h2>
+          <p class="subhead">you can't afford NOT to go</p>
+          <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to <a href="#">make a type </a>specimen book.
+          </p>
+          <p> It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </section>
+        <section>
+          <h2>Where Should We Go?</h2>
+          <p class="subhead">tropical beaches are the most relaxing</p>
+          <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p> It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing <a href="#">Lorem Ipsum passages</a>, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </section>      
+      </article>
+    </main>
+    <footer id="pageFooter">
+         <form action="#" method="post" class="search-form">
+              <label for="search">Looking for something?</label>
+              <input type="search" placeholder="Search" title="Search" class="q" name="search" id="search">
+              <input type="submit" class="submit" value="Go" name="submit">
+         </form>
+         <p class="notice">&copy; 2013 Platt College</p>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script>
+    //brad frost flyout menu
+  $('body').addClass('js');
+  
+  const $menulink = $('.menu-link'),
+      $wrap = $('#wrap');
+  
+    $menulink.click(function() {
+    $menulink.toggleClass('active');
+    $wrap.toggleClass('active');
+    return false;
+     });
+
+</script>
+</body>
+</html>
+

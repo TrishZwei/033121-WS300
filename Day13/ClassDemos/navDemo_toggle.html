@@ -2,20 +2,31 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Let's navigate: responsive navigation patterns</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Let's navigate: responsive navigation patterns- CSS Toggle</title>
 <link rel="stylesheet" href="css/normalize.css">
-
+<link href="css/nav_cssToggle2.css" rel="stylesheet" media="screen, projection">
+<!-- jquery! -->
 </head>
 
-<body>
-<header id="pageHeader" role="banner">
+<body id="top">
+<header  role="banner">
      <h1>Navigate</h1>
 </header>
-<!-- nav goes here -->
+<a href="#menu" class="menu-link">Menu </a>
+          <nav id="menu" role="navigation" class="cf">
+               <ul>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                    <li><a href="#">Link 4</a></li>
+                    <li><a href="#">Link 5</a></li>
+                    <li><a href="#">Link 6</a></li>
+               </ul>
+          </nav>
+          
 <main id="content" role="main" class="cf">
 	
-
      <div class="mission">
           <h1>Get Me Out of Here!</h1>
      </div>
@@ -39,7 +50,6 @@
      </article>
 </main>
 
-
 <footer id="pageFooter">
      <form action="#" method="post" class="search-form">
           <label for="search">Looking for something?</label>
@@ -48,6 +58,8 @@
      </form>
      <p class="notice">&copy; 2013 Platt College</p>
 </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="scripts/toggle.js"></script>
 
 </body>
 </html>

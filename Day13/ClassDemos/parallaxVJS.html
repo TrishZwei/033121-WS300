@@ -5,86 +5,87 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Parallax</title>
 	<style type="text/css">
+	/* responsive stylings would have to go in here. JS on items may need to be adjusted */
 		@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,800,900&display=swap');
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  box-sizing: border-box;
-}
+		* {
+		  margin: 0;
+		  padding: 0;
+		  font-family: 'Poppins', sans-serif;
+		  box-sizing: border-box;
+		}
 
-body{
-	background: #0a2a43;
-	min-height: 1500px;
-	color: white;
-	font-size: 16px;
-}
+		body{
+			background: #0a2a43;
+			min-height: 1500px;
+			color: white;
+			font-size: 16px;
+		}
 
-header{
-	position: relative;
-	width: 100%;
-	height: 100vh;
-	overflow: hidden;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+		header{
+			position: relative;
+			width: 100%;
+			height: 100vh;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 
-header:before{
-	content: '';
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 100px;
-	background: linear-gradient(to top, #0a2a43, transparent);
-	z-index: 10000;
-}
+		header:before{
+			content: '';
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 100px;
+			background: linear-gradient(to top, #0a2a43, transparent);
+			z-index: 10000;
+		}
 
-header:after{
-	content: '';
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 100%;
-	background: #0a2a43;
-	z-index: 10000;
-	mix-blend-mode: color;
-}
+		header:after{
+			content: '';
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+			background: #0a2a43;
+			z-index: 10000;
+			mix-blend-mode: color;
+		}
 
 
-header img{
-	position: absolute;
-	top: 0;
-	left:0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	pointer-events: none;
-}
+		header img{
+			position: absolute;
+			top: 0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			pointer-events: none;
+		}
 
-#heading{
-	font-size: 10em;
-	color: white;
-	position: relative;
-	z-index: 1;
-}
+		#heading{
+			font-size: 10em;
+			color: white;
+			position: relative;
+			z-index: 1;
+		}
 
-#road{
-	z-index: 2
-}
+		#road{
+			z-index: 2
+		}
 
-section{
-	width: 80%;
-	margin: .5rem auto;
-}
+		section{
+			width: 80%;
+			margin: .5rem auto;
+		}
 
-section h2{
-	padding: .5rem 0;
-}
+		section h2{
+			padding: .5rem 0;
+		}
 
-section p{
-	padding: .5rem;
-}
+		section p{
+			padding: .5rem;
+		}
 
 	</style>
 

@@ -56,7 +56,7 @@ body {
 /*
 == Basic Links
 */
-a {
+article a {
 	text-decoration: none;
 	color: #667F6A;
 	border-bottom: 1px dotted #667F6A;
@@ -78,65 +78,106 @@ header h1{
 	font-size:3em;
 	color:#B1824C;
 	/*margin:0 0 0.5em 0;*/
-	wodth:100%;
+	width:100%;
 	margin:0;
 	text-align:center;
 }
 
-/*#mainNav h2, #mainNav #menuToggle {
-	display: none;
-}*/
+.wrap{
+	position: relative;
+	transition: all 0.5s ease-out
+}
+
+.wrap.active{
+	left: 16em;
+}
 
 /*nav styles*/
-#mainNav{
+/*change*/
+a.menu-link{
+	display: block;
+	padding: 0.85em;
+	position: absolute;
+	top: 0px;
+	background-color: #B1824C;
+	color: white;
+	border-top: #B1824C 1px solid;
+	text-decoration: none;
+}
+
+/*changing....*/
+.js a.menu-link:before{
+	content: "<";
+}
+
+.js a.menu-link.active:after{
+	content: ">";
+}
+.js a.menu-link.active:before{
+	content: "";
+}
+
+nav[role=navigation]{
+  background-color: #4E2D26;
+  clear: both;
+  overflow: hidden;
+}
+
+.js nav[role=navigation] {
+  width: 16em;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -16em;
+}
+
+/*.js nav[role=navigation].active{
+	max-height: 30em;
+}*/
+
+nav[role=navigation] ul{
+	margin: 0;
+	padding: 0;
+}
+
+#main-nav{
 	background-color:#B1824C;
 	width: 100%;
 	margin: 0;
 	overflow: hidden;
-	margin-bottom:0;
-	padding: 0;
-	border-bottom:#4E2D26 3px solid;	
 }
-
-		
-		
-	
 nav ul {
 	list-style: none;
 	padding-left:0;
 }
 
-#mainNav a, #mainNav h3 {
+#main-nav a, #main-nav h3 {
 	text-transform: uppercase;
-	text-align: center;
 	display: block;
 	color: white;
 	border: none;
-	font-size: 1em;
+	font-size: 1.2em;
 	text-align: left;
 	color: white;	
 	display: block;
 	margin-bottom: 1px;
-	padding:.75em 1em;
+	padding-left: 1em;
 	line-height: 2em;
 	text-transform: uppercase;
 	cursor: pointer;
-	background-color:#B1824C;
+	background-color:#7E5D39;
 	padding-bottom:0.02em;	
 }
-
-#mainNav a:hover{
+#main-nav a:hover{
 		background-color:#4E2D26;
 	}
 
-#mainNav li {
-	/*margin: 0;
+#main-nav li {
+	margin: 0;
 	float: none;
-	position: relative;*/
-	float: left;
-	width: auto;
-	margin-right:0;
+	position: relative;
 }
+/*do toggle styles need to be here?*/
 
 /*misson styles*/
 
@@ -240,21 +281,35 @@ input[type="submit"] {
 		text-align:left;
 	}
 
-/*nav styles*/
-	#mainNav {
+
+/*nav styles in tablet changed a bit*/
+	a.menu-link{
+		display: none;
+	}
+
+ .js nav[role=navigation] {
+    max-width: none;
+    position: static;
+    width: auto;
+  }
+	#main-nav ul{
+		margin: 0;
+	}
+
+	#main-nav {
 		width: 100%;
 		padding: 0;
 		margin-bottom:0;
-	border-bottom:#4E2D26 3px solid;	
+		border-bottom:#4E2D26 3px solid;	
 	}
 	
-	#mainNav li {
+	#main-nav li {
 		float: left;
 		width: auto;
 		margin-right:0;
 	}
 
-	#mainNav a {
+	#main-nav a {
 		font-size: 1em;
 		text-align: center;
 		cursor: pointer;
@@ -262,6 +317,20 @@ input[type="submit"] {
 		background-color:#B1824C;
 	}
 	
+ nav[role=navigation] ul {
+    margin: 0;
+    border: 0;
+    background-color:#B1824B;	
+  }
+  
+  nav[role=navigation]  li {
+    display: inline-block;
+    margin: 0 0.25em 0 0;
+  }
+nav[role=navigation] li a {
+    border: 0;
+  }
+
 	/*mission styles*/
 	.mission {
 		padding-left: 3.9%;
@@ -312,7 +381,7 @@ input[type="submit"] {
 	}
 	
 
-	#mainNav a{
+	#main-nav a{
 		font-size: 1em;
 		text-align: center;
 		padding:  1em 2em;

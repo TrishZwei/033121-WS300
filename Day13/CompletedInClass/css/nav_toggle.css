@@ -77,50 +77,66 @@ header h1{
 	font-family:"Titillium Web", sans-serif;
 	font-size:3em;
 	color:#B1824C;
-	margin:0 0 0.5em 0;
+	/*margin:0 0 0.5em 0;*/
+	width:100%;
+	margin:0;
 	text-align:center;
 }
 
-/*#mainNav h2, #mainNav #menuToggle {
-	display: none;
-}*/
 
 /*nav styles*/
-#mainNav{
+a.menu-link{
+	float: left;
+	display: block;
+	padding: 1em;
+	background-color: #B1824C;
+	color: white;
+	border-top: #B1824C 1px solid;
+	text-decoration: none;
+	width: 100%;
+}
+
+/*adding plus and minus sighs after menu*/
+.js a.menu-link:after{
+	content: "+";
+}
+
+.js a.menu-link.active:after{
+	content: "-";
+}
+
+nav[role=navigation]{
+	clear:both;
+	transition: all 0.3s ease-out;
+}
+
+.js nav[role=navigation]{
+	overflow: hidden;
+	max-height: 0;
+}
+
+.js nav[role=navigation].active{
+	max-height: 30em;
+}
+
+nav[role=navigation] ul{
+	margin: 0;
+	padding: 0;
+}
+
+#main-nav{
 	background-color:#B1824C;
 	width: 100%;
 	margin: 0;
 	overflow: hidden;
 }
-main h3{
-	
-	padding-left: 1em;
-	margin:0;
-	padding:0.25em 0 0.25em 0.5em;;
-	color:#FFF;
-	text-transform: uppercase;
-	font-weight:normal;
-	background-color:#B1824C;
-	border-bottom:#4E2D26 3px solid;	
-}
-
-main h3 a{
-	color:white;
-	text-decoration:none;
-	
-}
-main h3 a:hover{
-	color:#4E2D26;
-}
-
 nav ul {
 	list-style: none;
 	padding-left:0;
 }
 
-#mainNav a, #mainNav h3 {
+#main-nav a, #main-nav h3 {
 	text-transform: uppercase;
-	text-decoration:none;
 	display: block;
 	color: white;
 	border: none;
@@ -136,26 +152,16 @@ nav ul {
 	background-color:#7E5D39;
 	padding-bottom:0.02em;	
 }
-#mainNav a:hover{
+#main-nav a:hover{
 		background-color:#4E2D26;
 	}
 
-#mainNav li {
+#main-nav li {
 	margin: 0;
 	float: none;
 	position: relative;
 }
-
-li.toTop {
-	font-size:0.65em;
-	font-style:italic;
-	text-align:center;
-}
-
-li.toTop a{
-	padding:0.65em 0;
-}
-
+/*do toggle styles need to be here?*/
 
 /*misson styles*/
 
@@ -196,7 +202,6 @@ article h2 {
 	margin-bottom: 0;
 	color:#4E2D26;
 	font-family:"Titillium Web", sans-serif;
-	
 }
 .subhead{
 	font-style:italic;
@@ -254,16 +259,46 @@ input[type="submit"] {
 	}
 	/*header styles*/
 	header{
-		height:135px;
+		height:100px;
 	}
 	header h1{
 		text-align:left;
 	}
-	
-	
 
-/*nav styles
-	*/
+
+/*nav styles*/
+	a.menu-link{
+		display: none;
+	}
+
+	.js nav[role=navigation]{
+		overflow: auto;
+		max-height: 4em;
+	}
+	#main-nav ul{
+		margin: 0;
+	}
+
+	#main-nav {
+		width: 100%;
+		padding: 0;
+		margin-bottom:0;
+		border-bottom:#4E2D26 3px solid;	
+	}
+	
+	#main-nav li {
+		float: left;
+		width: auto;
+		margin-right:0;
+	}
+
+	#main-nav a {
+		font-size: 1em;
+		text-align: center;
+		cursor: pointer;
+		padding:.75em 1em;
+		background-color:#B1824C;
+	}
 	
 	/*mission styles*/
 	.mission {
@@ -311,10 +346,15 @@ input[type="submit"] {
 @media only screen and (min-width:769px) {
 
 	body {
-		max-width: 1080px;	
+		max-width: 1080px;
 	}
-	/*nav styles */
+	
 
+	#main-nav a{
+		font-size: 1em;
+		text-align: center;
+		padding:  1em 2em;
+	}
 	
 	/*mission styles*/
 	.mission {
