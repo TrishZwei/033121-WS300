@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Countdown With Images</title>
+	<style type="text/css">
+		*,*:before, *:after{
+			box-sizing: inherit;
+		}
+
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+			text-align: center;
+			background-color: black;
+			color: white;
+		}	
+
+		.until{
+			margin: 0 auto;
+		}
+
+		.until div{
+			display: inline-block;
+			background-color: #881EE4;
+			padding: 1em;
+			margin: 0;
+			min-width:100px;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Days Until Event</h1>
+	<div class="until">
+		<div class="days">
+			<h3>Days:</h3>
+			<img src="images/0.jpg">
+			<img src="images/0.jpg">
+		</div>	
+		<div class="hours">
+			<h3>Hours:</h3>
+			<img src="images/0.jpg">
+			<img src="images/0.jpg">
+		</div>	
+		<div class="minutes">
+			<h3>Minutes:</h3>
+			<img src="images/0.jpg">
+			<img src="images/0.jpg">
+		</div>	
+		<div class="seconds">
+			<h3>Seconds:</h3>
+			<img src="images/0.jpg">
+			<img src="images/0.jpg">
+		</div>	
+	</div>
+
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	'use strict';
+	let message = "Class Ends in...";
+	const end = new Date("May 7, 2021 11:59:59");
+	const endMs = end.getTime(); //gets our end date in milliseconds from 1/1/1970
+	//console.log(endMs)
+	
+	function runCountdown(){
+		let now = new Date();
+		//console.log(endMs-now.getTime())
+		let nowMs = now.getTime(); 
+		let diff = endMs-nowMs; 
+
+		//ms in 1 day: 1000 * 60 * 60 * 24
+		//1000 = 1 second, 60 secs = 1 minute, 60 minutes = 1 hour, 24 hours = 1 day
+
+		let days = Math.floor(diff / (1000 * 60 * 60 * 24)); //whole day
+		let hours = Math.floor((diff % (1000 * 60 * 60 * 24) / (1000*60*60)));
+		//give me the remander of diff/days and then divide the remainder by hours
+		let minutes = Math.floor(diff % (1000*60*60) / (1000*60));
+		let seconds = Math.floor(diff/1000) % 60;
+		
+		if(days < 10){
+			days = '0'+days;
+		}
+
+		if(hours < 10){
+			hours = '0'+hours;
+		}
+
+		if(minutes < 10){
+			minutes = '0'+minutes;
+		}
+
+		if(seconds < 10){
+			seconds = '0'+seconds;
+		}
+
+		let daysArray = days.toString().split('');
+		//console.log(daysArray);
+		let hoursArray = hours.toString().split('');
+		let minsArray = minutes.toString().split('');
+		let secsArray = seconds.toString().split('');
+		 
+
+		$('.days img:first-of-type').attr('src', 'images/'+daysArray[0]+'.jpg')
+		$('.days img:last-of-type').attr('src', 'images/'+daysArray[1]+'.jpg')
+		$('.hours img:first-of-type').attr('src', 'images/'+hoursArray[0]+'.jpg')
+		$('.hours img:last-of-type').attr('src', 'images/'+hoursArray[1]+'.jpg')
+		$('.minutes img:first-of-type').attr('src', 'images/'+minsArray[0]+'.jpg')
+		$('.minutes img:last-of-type').attr('src', 'images/'+minsArray[1]+'.jpg')
+		$('.seconds img:first-of-type').attr('src', 'images/'+secsArray[0]+'.jpg')
+		$('.seconds img:last-of-type').attr('src', 'images/'+secsArray[1]+'.jpg')
+	
+	window.requestAnimationFrame(runCountdown);
+
+	}
+
+	window.requestAnimationFrame(runCountdown);
+
+
+	
+
+
+
+</script>
+</body>
+</html>
