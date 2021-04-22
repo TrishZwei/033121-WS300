@@ -10,7 +10,7 @@ Image Galleries:
 
 Back to Top Button demo?
 
-Tabs
+Tabs: ImageTabs is good example:
 
 Tooltip
 

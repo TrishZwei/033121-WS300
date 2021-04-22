@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Clock</title>
+	<style type="text/css">
+		body, html{
+			font-family: Verdana, Arial, sans-serif;
+			font-size: 16px;
+			text-align: center;
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			padding: 0;			
+		}	
+
+
+		#display{
+			background-color: black;
+			color: white;
+			border-radius: 20px;
+			width: 30%;
+			padding: 1em;
+			font-size: 1.8em;
+			min-width: 483px;
+			margin: 1em auto;
+		}
+
+		.clock, .date{
+			margin: 1em auto;
+		}
+
+		.clock div, .date div{
+			display: inline-block;
+		}
+
+		.date div.colon{
+			margin-right: 5px;
+			margin-left: -5px;  
+		}
+
+
+
+
+	</style>
+</head>
+<body>
+	<div id="display">
+		<div class="clock">
+			<div id="hours">00</div>
+			<div class="colon">:</div>
+			<div id="minutes">00</div>
+			<div class="colon">:</div>
+			<div id="seconds">00</div>
+		</div>
+		<div class="date">
+			<div id="day">MONDAY</div>
+			<div class="colon">,</div>
+			<div id="month">NOVEMBER</div>
+			<div id="the-day">1</div>
+			<div class="colon">,</div>
+			<div id="year">2017</div>
+		</div>
+		<div class="greeting">Message goes here.</div>		
+	</div>
+
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	'use strict'
+
+
+	function displayClock(){
+	const today = new Date();
+
+		//setHours(#) lets us test:
+	today.setHours(23);
+
+
+	//clock stuff:
+	let currentHour =  today.getHours(); //0-23
+	let currentMins = today.getMinutes(); //0-59
+	let currentSecs = today.getSeconds(); //0-59
+
+
+	//storing values so that they can be manipulated and compared
+	let bodyClass = '';
+	let greeting = '';
+	//comparing values:
+	if(currentHour < 6){
+		bodyClass = 'early-morning';
+		greeting = 'Make sure you get your coffee! It is super early!';
+	}else if(currentHour < 12){
+		bodyClass = 'morning';
+		greeting = 'Good Morning!';
+	}else if(currentHour < 18){
+		bodyClass = 'afternoon';
+		greeting = 'Good Afternoon!';
+	}else if(currentHour < 22){
+		bodyClass = 'evening';
+		greeting = 'Good Evening!';
+	}else{
+		bodyClass = 'night';
+		greeting = 'Go. To. Bed. Good Night.';
+	}
+
+	$('body').addClass(bodyClass);
+	$('.greeting').text(greeting);
+
+	//make hours standard time/manipulating the value
+	if(currentHour > 11){
+		currentHour-=12;
+	}
+
+	if(currentHour == 0){
+		//midnight and noon both become 0 
+		currentHour = 12;
+	}
+
+
+	//make hours, minutes and seconds always be 2 digit in display
+	if(currentHour < 10 ){
+		currentHour = '0'+currentHour; //currentHour's data type is a number 
+	}
+
+	if(currentMins < 10 ){
+		currentMins = '0'+currentMins; //currentHour's data type is a number 
+	}
+
+	if(currentSecs < 10 ){
+		currentSecs = '0'+currentSecs; //currentHour's data type is a number 
+	}
+
+//date stuff:
+	let theDay = today.getDay(); //day of week 0-6
+	let theMonth = today.getMonth(); //the month 0-11
+	let theDate = today.getDate(); //date of the month ex: 22 (1-31)
+	let theYear = today.getFullYear(); //gets full 4 digit
+
+	const dayArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+//display values:
+	$('#hours').text(currentHour);
+	$('#minutes').text(currentMins);
+	$('#seconds').text(currentSecs);
+	$('#day').text(dayArray[theDay]); //on Thursday: theDay has a value of 4
+	$('#month').text(monthArray[theMonth]); 
+	$('#the-day').text(theDate);	
+	$('#year').text(theYear);
+	requestAnimationFrame(displayClock)
+	}
+
+//displayClock();
+//setInterval(displayClock, 500); //second arg is in ms 
+
+requestAnimationFrame(displayClock)
+
+	
+</script>
+</body>
+</html>

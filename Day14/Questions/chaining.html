@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jQ Template</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}	
+
+		#box{
+			height: 50px;
+			width: 50px;
+			background-color: cadetblue;
+			position: absolute;
+			top: 100px
+			left:100px;
+		}
+	</style>
+</head>
+<body>
+<div id="box"></div>
+
+
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- jQuery plugins -->
+<!-- custom script that accesses jQ and any plugins -->
+<script type="text/javascript">
+	$('#box').animate({top:'+=100'})
+			 .animate({left:'+=100'})
+			 .animate({top:'-=100'})
+			 .animate({left:'-=100'});
+
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<style type="text/css">
+	body, html{
+		font-family: Verdana,sans-serif;
+		text-align: center;
+		background-color: black;
+		color: white;
+	}
+
+/*	h1{
+		color: #FF9A00;
+	}*/
+
+	.until{
+		margin: 0 auto;
+	}
+
+	.until div{
+		display: inline-block;
+		background-color: #881EE4;
+		padding: 1em;
+		margin: 0;
+		min-width: 100px;
+	}
+
+	*, *:before, *:after{
+		box-sizing: inherit;
+	}
+
+
+</style>
+
+</head>
+<body>
+	<h1>Days Until Event</h1>
+	<div class="until">	
+		<div class="days">
+			<h3>Days:</h3>
+			<p>0</p>
+		</div>
+		<div class="hours">
+			<h3>Hours:</h3>
+			<p>0</p>
+		</div>		
+		<div class="minutes">
+			<h3>Minutes:</h3>
+			<p>0</p>
+		</div>
+		<div class="seconds">
+			<h3>Seconds:</h3>
+			<p>0</p>
+		</div>
+	</div>
+
+
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript">
+//
+var message  = "Class Ends in...";
+var end = new Date("May 7, 2021 11:59:9999")
+var endMs = end.getTime(); //gets our date in milliseconds
+//alert(endMs);
+
+$('h1').text(message);
+function runCountdown(){
+var now = new Date();
+var nowMs = now.getTime();
+//alert(nowMs);
+
+//end-now also works alert(end-now);
+var diff = endMs - nowMs;
+
+//ms in 1 day: 1000 * 60 * 60 * 24
+//1000 = 1 second, 60 secs = 1 minute, 60 minutes = 1 hour, 24 hours = 1 day
+var days = Math.floor(diff / (1000*60*60*24)); //whole days
+
+var hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+//give me the remainder of diff/days then / that by hours
+
+var minutes = Math.floor((diff % (1000*60*60)) / (1000 * 60));
+//give me the remainder of diff/hours then / that by minutes
+var seconds = Math.floor(diff/1000) % 60
+
+
+
+$('.days p').text(days);
+$('.hours p').text(hours);
+$('.minutes p').text(minutes);
+$('.seconds p').text(seconds);
+
+
+}
+runCountdown();
+
+setInterval(runCountdown, 1000)
+
+	
+</script>
+</body>
+</html>
