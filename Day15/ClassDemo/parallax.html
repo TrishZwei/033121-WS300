@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Parallax</title>
+	
+	<style type="text/css">
+	/* responsive stylings would have to go in here. JS on items may need to be adjusted */
+	@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,800,900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+body{
+	background: #0a2a43;
+	min-height: 1500px;
+	color: white;
+	font-size: 16px;
+}
+
+header{
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+header:before{
+	content: '';
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	background: linear-gradient(to top, #0a2a43, transparent);
+	z-index: 10000;
+}
+
+header:after{
+	content: '';
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: #0a2a43;
+	z-index: 10000;
+	mix-blend-mode: color;
+}
+
+
+header img{
+	position: absolute;
+	top: 0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	pointer-events: none;
+}
+
+#heading{
+	font-size: 10em;
+	color: white;
+	position: relative;
+	z-index: 1;
+}
+
+#road{
+	z-index: 2
+}
+
+section{
+	width: 80%;
+	margin: .5rem auto;
+}
+
+section h2{
+	padding: .5rem 0;
+}
+
+section p{
+	padding: .5rem;
+}
+
+	</style>
+
+</head>
+<body>
+<!-- 
+inspired by this page: https://www.youtube.com/watch?v=TawH-AqHTXc
+code modified to work for us. This is not responsive. That will need to be remedied in the future
+--> 	
+<header>
+	<img src="images/bg.jpg" id="bg">
+	<img src="images/moon.png" id="moon">
+	<img src="images/mountain.png" id="mountain">
+	<img src="images/road.png" id="road">
+	<h1 id="heading">Moon Light</h1>
+</header>
+<section>
+	<h2>Story Line:</h2>
+	<p>Three time periods - young adolescence, mid-teen and young adult - in the life of black-American Chiron is presented. When a child, Chiron lives with his single, crack addict mother Paula in a crime ridden neighborhood in Miami. Chiron is a shy, withdrawn child largely due to his small size and being neglected by his mother, who is more concerned about getting her fixes and satisfying her carnal needs than taking care of him. Because of these issues, Chiron is bullied, the slurs hurled at him which he doesn't understand beyond knowing that they are meant to be hurtful. Besides his same aged Cuban-American friend Kevin, Chiron is given what little guidance he has in life from a neighborhood drug dealer named Juan, who can see that he is neglected, and Juan's caring girlfriend Teresa, whose home acts as a sanctuary away from the bullies and away from Paula's abuse. With this childhood as a foundation, Chiron may have a predetermined path in life, one that will only be magnified in terms... Written by Huggo</p>	
+</section>
+<section>
+	<h2>Trivia:</h2>
+	<p>According to cinematographer James Laxton Moonlight only had a small budget of $1.5 million (Variety). Director Barry Jenkins confirmed at a Q&A at the BFI in London, that this was indeed the budget. This is a lower budget than any other 'Best Picture' winner since Rocky (1976) had, which cost a reported $1.1 million in its day. But if the budgets are adjusted for inflation, then "Moonlight" has to be regarded as the 'Best Picture' winner with the lowest budget ever.
+	</p>
+	<p>Naomie Harris had to shoot her entire role in three days, in between her promotional tour of Spectre (2015), due to a visa problem (Harris is British). The scenes spanned 15 years in the character's life and were filmed out of sequence.
+	</p>
+	<p>When Juan teaches Little how to swim, Mahershala Ali is really teaching Alex R. Hibbert how to swim. When production started, Hibbert did not know how to swim.</p>
+	<p>Both director Barry Jenkins and writer Tarell Alvin McCraney's vision was pretty clear and singular in that both men grew up in the same Liberty City neighborhood of Miami with mothers who had both struggled with drug addiction. Roughly 80% of the film was shot on location here, one of the most poverty-stricken areas in the United States. Initially the production was apprehensive about safety issues until the word got out that Jenkins was from the neighborhood - then everything changed for the better. The locals couldn't have been more welcoming and cooperative. Naomie Harris has said that she'd never felt so appreciated and at ease on a film set during the shoot.
+	</p>
+	<p>In an interview, Barry Jenkins said that the three actors who play Chiron never met during production. He wanted each of them to build their own persona of Chiron during their respective segments, with no influence from the other portrayals. The same technique was used with the actors who play Kevin.
+	1,09</p>
+	<p>The film is based on the unproduced play "In Moonlight Black Boys Look Blue" by MacArthur Fellow Tarell Alvin McCraney.
+	</p>
+	<p>Such were the budgetary constraints on this production, the cast had to share one trailer for costume, hair and makeup and one rest room stall had to be shared by cast and crew.
+	</p>
+	<p>An early meeting with Brad Pitt helped director Barry Jenkins get the necessary funds and distribution deal he required.
+	</p>
+	<p>Filmed over 25 days in October and November 2015 in South Florida.
+	</p>
+	<p>Director Barry Jenkins was inspired by his own childhood in Miami, where he was "always surrounded by this very lush green grass and these beautiful golden sunsets." He grew up in "an awesome neighborhood where some very dark things happened." He feels as though his childhood was "a beautiful struggle."
+	</p>
+	<p>Mahershala Ali won the Academy Award for Best Supporting Actor for this film with less than 20 minutes of screen time.
+	</p>
+	<p>The second song that plays in the Diner is "Hello Stranger" by Barbara Lewis. Director Barry Jenkins made the decision to actually play the song on the jukebox in the background while they were filming.
+	</p>
+	<p>Producer Dede Gardner is the first woman to win the Academy Award for 'Best Picture' twice. Her first award was for 12 Years a Slave (2013).
+	</p>
+	<p>Director Barry Jenkins' favorite scene in his film was an impromptu sequence of Paula staring straight into the camera over-cranked at 48fps. This was a last-minute decision by Jenkins specifically intended to fully engage the audience with Paula's character.
+	</p>
+	<p>The light flashes in the transitions between chapters is actually an out of focus digital time-code from a camera slate. During filming the actors were sprayed with oil so their skin would shine on camera and the crew would hold the running slate against the lens to protect it from the sprays. Barry Jenkins saw the out of focus time-code on his view monitor and decided to add it to the film as the light flashes are literally showing time moving forward.
+	</p>
+	<p>Like Chiron, director Barry Jenkins also had a mother who suffered from addiction.
+	</p>
+	<p>This is the first LGBT film, and the first film featuring an all black cast, to win the Academy Award for Best Picture.
+	</p>
+	<p>Mahershala Ali is the first person of Muslim faith to win an Academy Award for acting.</p>
+	<p>When first approached, Naomie Harris was very reluctant to play a crack addict since it was so alien to her teetotaling persona. Harris had been insistent from the start on a career plan to only portray women in a positive light. However, when Barry Jenkins confided to her that she'd be portraying a character based on his own crack-addicted mother, she agreed to take on the role. In preparation for the part she spent a month researching the lives of drug addicts by watching several videos of crack addicts on YouTube.</p>
+	<p>Moonlight has a very diverse score with music ranging from orchestra to "chopped and screwed." As the film goes on, composer Nicholas Britell decided to "chop and screw" the orchestra to create a unique sound.</p>
+	<p>Chiron is the name of a centaur in Greek mythology known as the Wounded Healer.</p>
+
+	<p>With his Oscar nomination, Barry Jenkins has become the fourth black filmmaker nominated in the Best Director category.</p>
+
+	<p>The adult Chiron drives a car with the license plate number "BLACK305." 'Black' is the nickname Kevin gives to Chiron when they are teenagers, and 305 is the area code for Miami.</p><p>
+
+	The inspiration for the narrative structure of the film came from Taiwanese director Hsiao-Hsien Hou's film Three Times (2005).</p>
+	
+	<p>During an interview, director Barry Jenkins mentioned that the idea of using the song Every N----r Is A Star by Boris Gardiner came from a sample from Kendrick Lamar's album To Pimp A Butterfly which starts with a sample of the original song.</p>
+	
+	<p>During a Q&A at the International Film Festival Rotterdam director Barry Jenkins jokingly answered the question to what the budget was by saying: "Somewhere below 500 million dollars!" In fact, at a later Q&A at the BFI in London, he confirmed the budget was only $1.5 million.</p>
+	
+	<p>Pricewaterhouse-Coopers, the accounting firm responsible for tabulating the results, preparing awards envelopes and handing them to presenters apologized unreservedly to the makers of La La Land (2016) and Moonlight, as well as everyone involved, after an envelope mix-up caused the former to be incorrectly announced as Best Picture: "We sincerely apologize to Moonlight, La La Land, Warren Beatty, Faye Dunaway, and Oscar viewers for the error that was made during the award announcement for Best Picture. The presenters had mistakenly been given the wrong category envelope and when discovered, was immediately corrected. [sic] We are currently investigating how this could have happened, and deeply regret that this occurred. We appreciate the grace with which the nominees, the Academy, ABC, and Jimmy Kimmel handled the situation."</p>
+
+	<p>The song "One Step Ahead" by Aretha Franklin plays twice in the film. In the first act, it is playing in the living room after Chiron comes home from the swimming lesson. You can also hear it playing in the Diner on the jukebox in the third act.</p>
+	
+	<p>Both Mahershala Ali and Janelle Monáe also appear in Hidden Figures (2016), another Best Picture nominee in the same year.</p>
+	
+	<p>Second film to be officially screened at the "National Museum of African American History and Culture" that opened to the public in Washington D.C. on September 24, 2016 (the 19th and newest museum of the Smithsonian Institution).</p>
+	
+	<p>In order to persuade Naomie Harris to join the project, producer Jeremy Kleiner lied and told her that Barry Jenkins had written the role of Paula with her in mind. She didn't find out the truth until after filming, and in actuality Kleiner had to convince Jenkins that Harris was the right actress for the role.</p>
+	
+	<p>Director Barry Jenkins started writing the screenplay in Brussels, in the bar Lord Byron.</p>
+
+	<p>A24's first film to win an Oscar for Best Picture on the 89th Academy Awards.</p>	
+	
+	<p>The first Academy Award 'Best Picture' winner by a black filmmaker who both directed and wrote the screenplay.</p>
+
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+//paralax vanilla JS
+
+	let bg = $('#bg'),
+		moon = $('#moon'),
+		mountain = $('#mountain'),
+		road = $('#road'),
+		heading = $('#heading');
+
+//additional work would have to be done on this to be responsive
+
+		$(window).on('scroll', function(){
+			let value = window.scrollY;
+			bg.css({top: (value * 0.5 )})
+			moon.css({left: (-value * 0.5 )})
+			mountain.css({top: (-value * 0.15 )})
+			road.css({top: (value * 0.15 )})
+			heading.css({top: (value * 1)})
+
+		})
+
+
+
+
+
+</script>
+</body>
+</html>

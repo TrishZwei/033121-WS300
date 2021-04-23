@@ -1,0 +1,30 @@
+NavDemos:
+	sticky nav
+	toggle nav
+	flyout nav
+
+Image Galleries:
+	different ways to access image galleries with JS... lazy load?
+	fancy box?
+	paralax scroll fading in images
+
+Back to Top Button demo?
+
+Tabs: ImageTabs is good example:
+
+Tooltip
+
+Progress Bar
+
+Flash Style Animations:
+	pan background
+	sprite animation 
+
+Login Form(covered when revisiting jQ validate)
+
+Cool JS Gallery Links: 
+https://tympanus.net/Development/ScatteredPolaroidsGallery/
+https://tympanus.net/Development/LettersAnimationLayout/
+https://tympanus.net/Development/PreviewContentTransition/
+http://unitegallery.net/index.php
+
