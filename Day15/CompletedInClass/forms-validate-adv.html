@@ -186,7 +186,46 @@ In this case we are using the get method on purpose so that we can see the data 
 
 <script type="text/javascript">
     //please note that name attributes are necessary for capturing and passing data between pages
-    $('#sign-up').validate();
+    $('#sign-up').validate({
+        //change the properties of the validate funtion by manipulating its values between the curly braces
+        onfocusout:function(element){
+            $(element).valid();
+             //detects what element in the form lost focus and runs the valid method on that individual element.
+        },
+        rules:{
+            email:{
+                required:true,
+                email:true
+            },
+            message: 'required',
+            'check_selection[]': {
+                    required: true,
+                    minlength: 1 // makes sure 1 box is checked
+            }
+        }, //end of rules argument
+        messages:{
+                name:'Please enter your full name.',
+                email:{
+                        required: 'Please supply an email address',
+                        email: "This is not a valid email address, please correct."
+                },
+                message:'Please tell us what you want us to know.',
+                'check_selection[]': {
+                        required: 'You must check at least one checkbox.'
+                    }
+        }, //end of messages argument
+        //error placement allows to put error messages in specific locations - example: checkboxes
+        //this overwrites the default function of erroPlacement which is why we will need the else statement.
+        errorPlacement: function(error, element){
+            if(element.is(':checkbox') || element.is(':radio') ){
+                //changed appendTo to insertAfter
+                error.insertAfter(element.parents('label'));
+            }else{
+                error.insertAfter(element);
+            }
+        }
+
+    });
 
 
 </script>
