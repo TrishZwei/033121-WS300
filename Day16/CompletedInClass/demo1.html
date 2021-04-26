@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Accordion</title>
+<style type="text/css">
+	body{
+		font-family: Verdana,sans-serif;
+	}
+
+	.accordion-header{
+		cursor: pointer;
+	}
+
+	.accordion-content{
+		display: none;
+	}
+
+</style>
+
+</head>
+<body>
+<h1>Accordion Demo</h1>
+<section class="accordion">
+	<h2 class="accordion-header one">Header 1</h2>
+	<div class="accordion-content">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		</p>
+		<p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>	
+	</div>	
+	<h2 class="accordion-header two">Header 2</h2>
+	<div class="accordion-content">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		</p>
+		<p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>	
+	</div>	
+	<h2 class="accordion-header three">Header 3</h2>
+	<div class="accordion-content">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		</p>
+		<p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>	
+	</div>	
+</section>
+
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript">
+//the short way:
+$('.accordion-header').click( function(){
+	//find next sibling and animate it to open/close
+
+	$(this).next().slideToggle(); //toggles open/close
+
+})
+
+//$('.accordion-header').next().slideToggle();
+
+
+
+</script>
+</body>
+</html>

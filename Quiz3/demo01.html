@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<style type="text/css">
+	body{
+		font-family: Verdana,sans-serif;
+	}
+</style>
+
+</head>
+<body>
+<div class="calculator" style="text-align: center;">
+	<input type="text" class="value1"><br>
+	<select>
+		<option value="add">Add</option>
+		<option value="subtract">Subtract</option>
+		<option value="multiply">Multiply</option>
+		<option value="divide">Divide</option>
+	</select> <br>
+	<input type="text" class="value2"> <br>
+	<input type="button"  class="button" value="Sum">
+	<div class="total"></div>
+</div>
+
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript">
+
+'use strict';
+
+let input1 =  $('.value1');
+let input2 =  $('.value2');
+let select = $('select'); 
+let button = $('.button');
+
+//jquery event listener
+
+button.click( function(){
+	//grab the values from inputs 
+	//add those two values together
+	//display to page
+	
+	let num1 = Number(input1.val());
+	let num2 = input2.val()*1;
+	let total = 0; 
+
+	
+	switch(select.val()){
+		case 'add':
+		total = num1 + num2;
+		break;
+
+		case 'subtract':
+		total = num1 - num2;
+		break;	
+
+		case 'multiply':
+		total = num1 * num2;
+		break;	
+
+		case 'divide':
+		total = num1 / num2;
+		break;	
+
+		default:
+		total = 0;
+		break;
+	} //end of switch
+
+	
+	$('.total').text(total);
+
+})
+
+
+</script>
+</body>
+</html>
