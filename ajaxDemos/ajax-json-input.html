@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Using the AJAX Function</title>
+	<style type="text/css">
+	body{
+		font-size: 20px;
+		font-family: Verdana;
+		margin: 0 auto;
+		padding: 1em;
+	}
+
+	#content{
+		padding: 5px;
+		border: 2px dashed lightgray;
+	}
+
+	</style>
+</head>
+<body>
+<label>Search Flickr for: <input type="text" id="tags"></label><button id="search">Get Pictures</button>
+<p>If successful, the found images will appear below.</p>
+<div id="content"></div>
+<!-- jQuery below other elements -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+//documentation for the flickr api
+// https://www.flickr.com/services/api/flickr.photos.search.html
+var theTag = '';
+
+$('#search').click( function(){
+	theTag = $('#tags').val() || 'cats';
+	getJSONData();
+})
+
+
+
+function getJSONData(){
+var flickrAPI = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
+
+$.getJSON(flickrAPI, {
+	tags: theTag,
+	tagmode:'any',
+	format: 'json'
+}, successFn);
+
+} //end getJSONData()
+
+function successFn(d){
+	$('#content').text(''); //empties out the content div
+//d represents data
+console.log(d);
+$.each(d.items, function(i,item){
+//i is the same i we see in the for loop
+$('<img>').attr('src', item.media.m).appendTo('#content');
+//create a new image, give it a src value
+//that src value is the path to the image
+//append it to the content div
+
+if(i === 4){
+	return false;
+//find first 5 items and stop	
+}
+
+})
+
+}//end successFn(d)
+
+$('#tags').keypress( function(e){
+console.log(e.which);
+if(e.which == 13){
+//enter key
+$('#search').trigger('click');
+
+
+}
+
+})
+</script>
+</body>
+</html>
