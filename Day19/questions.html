@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jQuery Intro</title>
+	<style type="text/css">
+			body{
+				font-family: Verdana;
+			}
+
+	</style>
+</head>
+<body>
+<div class="date">time and day go here....</div>
+
+<!-- best practice put scripts at the bottom -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- any plugins/extensions on jQuery go here-->
+
+<script type="text/javascript">
+
+function updateTime(){
+	let today = new Date();//creating a new date object
+	$('.date').text( today )
+	requestAnimationFrame(updateTime)
+}
+
+requestAnimationFrame(updateTime)
+
+//window.requestAnimationFrame()
+
+//if no object is specified, the window is assumed
+
+	
+
+
+
+</script>
+</body>
+</html>
