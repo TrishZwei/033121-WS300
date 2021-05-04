@@ -1,0 +1,94 @@
+<html>
+<head>
+	<title>JS Clock</title>
+	<style type="text/css">
+		body{
+			background-color: black;
+			margin: 0 auto;
+			text-align: center;
+		}
+		#clock{
+			margin: 10px auto; 
+		}
+	</style>
+</head>
+<body>
+<div id="clock">
+	<img id="hour-one" src="images/0.jpg">
+	<img id="hour-two" src="images/0.jpg">
+	<img src="images/colon.jpg">
+	<img id="minute-one" src="images/0.jpg">
+	<img id="minute-two" src="images/0.jpg">
+	<img id="meridiem" src="images/A.jpg">
+</div>
+<!-- a quick note: a.m. stands for ante meridiem, and p.m. stands for post meridiem. Meridiem is latin for mid-day (noon) Hope that helps to put that last image into context -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+let time = 'blah';
+
+	function updateTime(){
+		let time = new Date();
+		console.log(time)
+		//testing must happen above where I am getting the vaule
+		time.setHours(0)
+
+		let hours = time.getHours(); //stores a value 0-23 based off current time
+		let minutes = time.getMinutes(); //stores a value of 0 - 59 based off of current time
+		console.log(hours)
+		console.log(minutes)
+		let am_pm = 'images/A.jpg';
+
+		if(hours > 11){
+			am_pm = 'images/P.jpg';
+		}
+
+		if(hours > 12){
+			//standard time
+			hours = hours - 12;
+		}
+
+		if(hours == 0){
+			hours = 12;
+		}
+
+		if(hours > 9){
+			//do nothing
+		}else{
+			hours = '0'+ hours;
+		}
+
+		if(minutes < 10){
+			minutes = '0' + minutes;
+		}
+
+		let hour1 = hours.toString().split('')[0]
+		let hour2 = hours.toString().split('')[1]
+		let minute1 = minutes.toString().split('')[0]
+		let minute2 = minutes.toString().split('')[1]
+
+		//let hoursArray = hours.toString().split('');
+		
+		console.log(hour1)
+		console.log(hour2)
+		//console.log(hoursArray)
+
+		$('#hour-one').attr('src', 'images/'+ hour1 +'.jpg')
+		$('#hour-two').attr('src', 'images/'+ hour2 +'.jpg')
+		$('#minute-one').attr('src', 'images/'+ minute1 +'.jpg')
+		$('#minute-two').attr('src', 'images/'+ minute2 +'.jpg')
+		$('#meridiem').attr('src', am_pm);
+
+//		requestAnimationFrame(updateTime);
+
+
+	}
+
+updateTime();
+
+
+
+
+</script>
+</body>
+</html>

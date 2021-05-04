@@ -96,13 +96,14 @@
 		if(seconds < 10){
 			seconds = '0'+seconds;
 		}
+		console.log(hours)
 
 		let daysArray = days.toString().split('');
 		//console.log(daysArray);
 		let hoursArray = hours.toString().split('');
 		let minsArray = minutes.toString().split('');
 		let secsArray = seconds.toString().split('');
-		 
+		 console.log(hours)
 
 		$('.days img:first-of-type').attr('src', 'images/'+daysArray[0]+'.jpg')
 		$('.days img:last-of-type').attr('src', 'images/'+daysArray[1]+'.jpg')

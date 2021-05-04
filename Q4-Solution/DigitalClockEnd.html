@@ -1,0 +1,103 @@
+<html>
+<head>
+	<title>JS Clock</title>
+	<style type="text/css">
+		body{
+			background-color: black;
+			margin: 0 auto;
+			text-align: center;
+		}
+		#clock{
+			margin: 10px auto; 
+		}
+	</style>
+</head>
+<body>
+<div id="clock">
+	<img id="hour-one" src="images/0.jpg">
+	<img id="hour-two" src="images/0.jpg">
+	<img src="images/colon.jpg">
+	<img id="minute-one" src="images/0.jpg">
+	<img id="minute-two" src="images/0.jpg">
+	<img id="meridiem" src="images/A.jpg">
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+function makeTime(){
+var date = new Date();
+var hour = date.getHours();
+var minutes = date.getMinutes();
+var AmPm = "P";
+
+if(hour<12){
+	AmPm = "A";
+}
+
+if(hour>12){
+	hour = hour-12;
+}
+
+if(hour == 0){
+	hour = 12;
+}
+
+if( hour < 10){
+	hour = '0'+hour;
+}
+
+if(minutes < 10){
+	minutes = '0'+minutes;
+}
+
+hour = String(hour); //ensures this is always a string
+minutes = String(minutes); //ensures this is always a string
+hour = hour.split(''); //converts to array
+
+// console.log(hour);
+// console.log(hour.constructor);
+// console.log(minutes);
+// console.log(minutes.constructor);
+
+$('#hour-one').attr('src', 'images/'+hour[0]+'.jpg'); //two different ways to do the same thing
+$('#hour-two').attr('src', 'images/'+hour[1]+'.jpg');
+$('#minute-one').attr('src', 'images/'+minutes.charAt(0)+'.jpg');
+$('#minute-two').attr('src', 'images/'+minutes.charAt(1)+'.jpg');
+$('#meridiem').attr('src', 'images/'+AmPm+'.jpg');
+
+}
+makeTime();
+
+setInterval(makeTime, 1000);
+
+
+/* 
+
+Instructions/Rules:
+
+This is an open internet test. You can use anything out there as examples. But if you use techniques not used in this class I will know and depending on how you apply them you may not get the score you are looking for. Start with class examples that are similar. Try taking the tasks you need for the clock to work step by step. Write your steps out in simple english and then try to write your code straightforwardly -- the fewer lines of code you use the better.
+
+Remember working with the date object is straight JS. The W3Schools has great stuff on the date object and tons of references. You can see tons of examples for how to work with the date object. We also wrote a JS clock that you can use a good portion (but not all of) to start off your code (look on the resources page -- you should find the day we did a clock in class easily). There is also a code challenge that we did you should be able to use as well.
+
+Rules: Do not alter the HTML above. You can do what I have asked with what's already there. 
+
+Hints: Find the right selectors, possibly change any attributes necessary to alter the images and use the methods we've learned in class for how and when to change the numbers and how to call a function more than once... 
+
+More hints: Make sure you strip out any unnecessary code. You do not want variable values to generate if you don't need them. You can comment out and comment lines will not count against the length of your code. Make comments liberally, so I can see any attempts you made that didn't work.
+
+Also feel free to make comments in your code for something you were trying to get to work and maybe did not accomplish. I can at least then see if you were at least looking in the right direction and potentially give you partial credit for that.
+
+You have until start of class on Day 24, because after that I will be explaining the simplest and most direct solution. 
+
+When you are done go here: http://webscripting.trishladd.com/final-code-challenge/ and submit it BEFORE 6PM.
+
+This is not my usual softish deadline! *Ahem* If it is late you will have points off because I will be discussing the solution on Thursday first thing. And it will be too late if it is turned in after I have discussed the solution. You will get no points then. So get it turned in on time!
+
+Your uploaded zip file should have your first name, last initial and the word final. So for example my zip file would be: trishl-final.zip. This is so that when I download your files and save them to look at them, your file and anyone else’s is not in danger of overwriting another person’s (or your) file. Thank you for following this important protocol. If I have to rename your file to meet this specification — you will have points removed from your end score.
+
+You totally got this; I have faith in you.
+
+*/
+</script>
+</body>
+</html>
