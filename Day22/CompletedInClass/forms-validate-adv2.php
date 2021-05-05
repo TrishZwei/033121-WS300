@@ -4,6 +4,7 @@
 /* comment */
 
 //var_dump($_GET);
+$did_mail = false; //avoids warning whenn did_mail does not exist on page yet
 
 if( isset($_POST['did_submit']) && $_POST['did_submit'] == 1){
 //clean data from form using filter_var
@@ -213,7 +214,6 @@ TODO: Remove novalidate attribute
  <div class="success">
     <p>Thank you for your message. We will contact you soon!</p>
  </div>
-
 
  <?php       
     }else{
