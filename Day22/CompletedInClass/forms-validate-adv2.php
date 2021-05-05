@@ -54,17 +54,20 @@ if( isset($_POST['did_submit']) && $_POST['did_submit'] == 1){
         $headers = "Reply-to: $email \r\n";
         $headers .= "From: $to"; //last line does not need the \r\n
 
-     $did_mail = mail($to,$subject,$message,$headers);
-     if($did_mail){
-        echo 'Success!';
-     }
+        $did_mail = true;
+
+    // $did_mail = mail($to,$subject,$message,$headers);
+    //  if($did_mail){
+    //     echo 'Success!';
+    //  }
 
 
-    }else{
-        echo $errors;
+    // }else{
+    //     echo $errors;
+    // }
+
     }
-
-}
+ }   
 
 ?>
 <!DOCTYPE html>
@@ -204,6 +207,17 @@ if( isset($_POST['did_submit']) && $_POST['did_submit'] == 1){
 In this case we are using the get method on purpose so that we can see the data being captured and passed into the address bar of your browser. In production we would change it to post.
 TODO: Remove novalidate attribute
 -->
+<?php  
+    if($did_mail){
+ ?>
+ <div class="success">
+    <p>Thank you for your message. We will contact you soon!</p>
+ </div>
+
+
+ <?php       
+    }else{
+?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="sign-up" class="elegant-aero" >
     <h1>Contact Form 
         <span>Please fill all the fields and select one of each item.</span>
@@ -235,6 +249,11 @@ TODO: Remove novalidate attribute
         <input type="hidden" name="did_submit" value="1"> 
     </label>    
 </form>
+<?php 
+    }
+ ?>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <!-- jQ Validate! -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous"></script>
@@ -282,6 +301,7 @@ TODO: Remove novalidate attribute
         }
 
     });
+
 
 </script>
 </body>
