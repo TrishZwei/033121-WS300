@@ -214,8 +214,9 @@ In this case we are using the get method on purpose so that we can see the data 
                         required: 'You must check at least one checkbox.'
                     }
         }, //end of messages argument
+
         //error placement allows to put error messages in specific locations - example: checkboxes
-        //this overwrites the default function of erroPlacement which is why we will need the else statement.
+        //this overwrites the default function of errorPlacement which is why we will need the else statement.
         errorPlacement: function(error, element){
             if(element.is(':checkbox') || element.is(':radio') ){
                 //changed appendTo to insertAfter
